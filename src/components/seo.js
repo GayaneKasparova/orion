@@ -1,89 +1,107 @@
+import React from 'react'
+import {useStaticQuery, graphql} from 'gatsby'
+import {Helmet} from 'react-helmet'
+
 /**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
+ * SEO component
+ **/
 
-import * as React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+const Seo = ({title, description, metaUrl, image}) => {
+    const seoData = useStaticQuery(
+        graphql`
+            query SeoSettings {
+                site {
+                    siteMetadata {
+                        title
+                        description
+                        siteUrl
+                        author
+                        language
+                        color
+                    }
+                }
+                datoCmsSite {
+                    globalSeo {
+                        siteName
+                        twitterAccount
+                        facebookPageUrl
+                        fallbackSeo {
+                            description
+                            title
+                            twitterCard
+                            image {
+                                fixed(width: 1246) {
+                                    src
+                                }
+                            }
+                        }
+                    }
+                    faviconMetaTags {
+                        tags
+                    }
+                }
+            }
+        `
+    )
 
-function Seo({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  )
+    const {
+        site: {siteMetadata},
+        datoCmsSite: {
+            globalSeo: {fallbackSeo, siteName},
+            faviconMetaTags,
+        },
+    } = seoData
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+    const meta = {
+        lang: siteMetadata.language,
+        title: title || siteName || fallbackSeo.title,
+        description: description || fallbackSeo.description,
+        url: metaUrl || siteMetadata.url,
+        image: image?.fixed?.src || fallbackSeo.image?.fixed.src,
+        color: siteMetadata.color,
+    }
 
-  return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata?.author || ``,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
-    />
-  )
-}
+    return (
+        <Helmet title={meta.title} titleTemplate={`%s - ${siteMetadata.title}`}>
+            <html lang={meta.lang}/>
 
-Seo.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
-}
+            <meta name="description" content={meta.description}/>
+            <meta name="image" content={meta.image}/>
+            <meta name="theme-color" content={meta.color}/>
+            <meta name="application-name" content={siteName}/>
+            <link rel="canonical" href={meta.url}/>
 
-Seo.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
+            <meta property="og:url" content={meta.url}/>
+            <meta property="og:title" content={meta.title}/>
+            <meta property="og:description" content={meta.description}/>
+            <meta property="og:image" content={meta.image}/>
+
+            <meta name="apple-mobile-web-app-capable" content="yes"/>
+            <meta name="apple-mobile-web-app-title" content={siteName}/>
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+            {faviconMetaTags.tags.length &&
+            faviconMetaTags.tags.map(
+                (tag, index) => {
+                    const attributes = tag.attributes
+                    attributes.key = index
+                    return React.createElement(tag.tagName, attributes)
+                }
+            )}
+        </Helmet>
+    )
 }
 
 export default Seo
+
+export const query = graphql`
+    fragment SeoFields on DatoCmsSeoField {
+        title
+        description
+        image {
+            fixed(width: 600) {
+                src
+            }
+        }
+    }
+`

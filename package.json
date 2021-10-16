@@ -1,44 +1,49 @@
 {
-  "name": "gatsby-starter-default",
-  "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "name": "orion",
+  "description": "Orion Club",
+  "version": "1.0.0",
+  "author": "Gayane Kasparova",
   "dependencies": {
-    "gatsby": "^3.14.2",
-    "gatsby-plugin-image": "^1.14.1",
-    "gatsby-plugin-manifest": "^3.14.0",
-    "gatsby-plugin-offline": "^4.14.0",
-    "gatsby-plugin-react-helmet": "^4.14.0",
-    "gatsby-plugin-sharp": "^3.14.1",
-    "gatsby-source-filesystem": "^3.14.0",
-    "gatsby-transformer-sharp": "^3.14.0",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0"
-  },
-  "devDependencies": {
-    "prettier": "2.4.1"
+    "@hot-loader/react-dom": "^17.0.1",
+    "babel-plugin-styled-components": "^1.12.0",
+    "dotenv": "^8.2.0",
+    "gatsby": "^3.5.1",
+    "gatsby-cli": "^3.1.0",
+    "gatsby-core-utils": "^2.2.0",
+    "gatsby-plugin-anchor-links": "^1.2.1",
+    "gatsby-plugin-google-analytics": "^3.1.0",
+    "gatsby-plugin-image": "^1.3.1",
+    "gatsby-plugin-manifest": "^3.1.0",
+    "gatsby-plugin-netlify": "^3.2.0",
+    "gatsby-plugin-offline": "^4.2.0",
+    "gatsby-plugin-react-helmet": "^4.2.0",
+    "gatsby-plugin-robots-txt": "^1.5.5",
+    "gatsby-plugin-sharp": "^3.0.1",
+    "gatsby-plugin-sitemap": "^3.2.0",
+    "gatsby-plugin-styled-components": "^4.2.0",
+    "gatsby-source-datocms": "^2.6.13",
+    "gatsby-source-filesystem": "^2.11.1",
+    "gatsby-transformer-remark": "^3.2.0",
+    "gatsby-transformer-sharp": "^3.2.0",
+    "graphql": "^15.5.0",
+    "lodash": "^4.17.20",
+    "react-device-detect": "^1.17.0",
+    "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
+    "styled-components": "^5.3.0"
   },
   "keywords": [
     "gatsby"
   ],
-  "license": "0BSD",
+  "license": "MIT",
+  "main": "n/a",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "gatsby develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\""
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  "devDependencies": {
+    "prettier": "^1.17.0",
+    "react": "^17.0.2"
   }
 }
