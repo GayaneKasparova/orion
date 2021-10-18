@@ -80,7 +80,7 @@ const Seo = ({title, description, metaUrl, image}) => {
             <meta name="apple-mobile-web-app-title" content={siteName}/>
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-            {faviconMetaTags.tags.length &&
+            {faviconMetaTags?.tags?.length &&
             faviconMetaTags.tags.map(
                 (tag, index) => {
                     const attributes = tag.attributes

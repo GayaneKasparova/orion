@@ -6,8 +6,8 @@ module.exports = {
         title: process.env.PROJECT_NAME,
         description: 'Orion Club web app',
         siteUrl: process.env.SITE_URL,
-        language: 'de',
-        color: '#0E2B56',
+        language: 'hy',
+        color: '#00bfdf',
         author: 'Gayane Kasparova',
     },
     plugins: [

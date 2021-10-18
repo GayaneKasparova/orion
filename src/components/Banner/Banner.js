@@ -31,7 +31,7 @@ const Banner = styled.div`
   padding: 30px 0;
   display: flex;
   align-items: center;
-  background-image: url("${props => props.bgImage.url}");
+  background-image: url("${props => props?.bgImage?.url}");
   background-size: cover;
   background-position: center;
   text-align: center;

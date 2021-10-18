@@ -1,20 +1,7 @@
 import React from 'react'
 import {graphql} from "gatsby";
-import styled from "styled-components";
-import BannerBlock from "../components/Banner/Banner";
-import TitledSection from "../components/Common/TitledSection/TitledSection";
-import TopArticles from "../components/TopArticles/TopArticles";
-import TopPartners from "../components/TopPartners/TopPartners";
-import Text from "../components/Common/Text";
-import {useWindowSize} from "../hooks/useWindowSize";
-import ContactUs from "../components/ContactUs/ContactUs";
 import Seo from "../components/Seo";
-import QuotesSection from "../components/Quotes Block/QuotesSection";
-
-const TopPartnersSection = styled(TitledSection)`
-  background-color: red;
-  font-size: 500px;
-`
+import Banner from "../components/Banner/Banner"
 
 const IndexPage = ({
                        data: {
@@ -35,17 +22,18 @@ const IndexPage = ({
                            }
                        }
                    }) => {
-   // const {width} = useWindowSize()
-
-    console.log(home)
 
     return (
-        <>
-           <Seo {...seoSettings}/>
-
-
-        </>
-
+      <>
+          <Seo {...seoSettings} />
+          <Banner
+            bgImage={bannerBackgroundImage}
+            title={bannerTitle}
+            subtitle={bannerSubtitle}
+            bannerBtnText={bannerBtnText}
+            bannerBtnLink={bannerBtnLink}
+          />
+      </>
     )
 }
 
