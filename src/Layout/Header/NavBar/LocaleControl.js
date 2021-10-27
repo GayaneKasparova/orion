@@ -25,12 +25,15 @@ const LocaleControl = () => {
     setLocale(locales.includes(pathLocaleName) ? pathLocaleName : defaultLocale)
   }, [setLocale, pathLocaleName])
 
-  const getTargetPath = (locale) => {
+  const getTargetPath = (targetLocale) => {
+    if (!pathName.split("/")[2] && targetLocale === defaultLocale ) {
+      return '/'
+    } else {
+      const pathNameStart = pathName.slice(0, pathName.indexOf(`${pathLocaleName}`))
+      const pathNameEnd = pathName.slice(pathName.indexOf(`${pathLocaleName}`) + 2, pathName.length)
 
-    const pathNameStart = pathName.slice(0, pathName.indexOf(`${pathLocaleName}`))
-    const pathNameEnd = pathName.slice(pathName.indexOf(`${pathLocaleName}`) + 2, pathName.length)
-
-    return pathNameStart + locale + pathNameEnd
+      return pathNameStart + targetLocale + pathNameEnd
+    }
   }
 
   return (
