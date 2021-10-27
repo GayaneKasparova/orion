@@ -3,7 +3,7 @@ import useNavLinks from "../../hooks/use-nav-links"
 import Navbar from "./NavBar/NavBar"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { ContainerBox } from "../../components/common/ContainerBox/ContainerBox"
+import { ContainerBox } from "../../components/Common/ContainerBox/ContainerBox"
 //import {StaticImage} from "gatsby-plugin-image";
 import { theme } from "../../styles/theme"
 import { useWindowSize } from "../../hooks/useWindowSize"
