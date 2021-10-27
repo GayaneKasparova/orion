@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {ContainerBox} from "../../components/Common/ContainerBox/ContainerBox";
+import {ContainerBox} from "../../components/common/ContainerBox/ContainerBox";
 import useNavLinks from "../../hooks/use-nav-links"
 import {Link} from "gatsby";
 //import {StaticImage} from "gatsby-plugin-image";

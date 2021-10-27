@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import {theme} from "../../../styles/theme";
 import {ContainerBox} from "../ContainerBox/ContainerBox";
-import SeeMore from "../../SeeMore/SeeMore";
+import { Link } from "gatsby"
+import useDictionary from "../../../hooks/use-dictionary"
 
 const TitledSection = ({title, id, children, seeMoreLink}) => (
     <SectionWrapper id={id}>
         <SectionTitle>{title}</SectionTitle>
         <SectionContent>
             {children}
-            {seeMoreLink && <SeeMore link={'/'} text={'Տեսնել ավելին'}/>}
+            {seeMoreLink && <SeeMore link={seeMoreLink} text={useDictionary('seeMore')}/>}
         </SectionContent>
     </SectionWrapper>
 )
@@ -36,6 +37,9 @@ const SectionWrapper = styled(ContainerBox)`
     padding-top: 140px;
     padding-bottom: 140px;
   }
+`
+const SeeMore = styled(Link)`
+
 `
 const SectionTitle = styled.h2`
   font-size: 24px;
