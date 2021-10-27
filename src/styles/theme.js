@@ -88,9 +88,12 @@ export const theme = {
         },
     },
     colors: {
-        red: '#E52F42',
-        blue: '#0E2B56',
-        white: '#FFFFFF'
+        pink: '#ff6fff',
+        purple: '#9113d3',
+        neonBlue: '#00bfdf',
+        blue: '#137f87',
+        white: '#FFFFFF',
+        black: '#171717'
     },
     borderRadius: 4,
     borderRadiusSizes: {

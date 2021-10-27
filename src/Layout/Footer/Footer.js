@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {ContainerBox} from "../../components/common/ContainerBox/ContainerBox";
 import useNavLinks from "../../hooks/use-nav-links"
 import {Link} from "gatsby";
-import {StaticImage} from "gatsby-plugin-image";
+//import {StaticImage} from "gatsby-plugin-image";
 import {theme} from "../../styles/theme";
 
 
@@ -14,15 +14,14 @@ const Footer = () => {
         <StyledFooter>
             <FooterContainerBox>
                 <LogoWrapper to={'/'}>
-                    <StaticImage
+                    {/*<StaticImage
                         src={"../../images/WhiteLogo.svg"}
                         alt={'Logo'}
                         layout="fixed"
                         width={42}
                         height={54}
                         style={{marginRight: 16}}
-                    />
-                    Կառուցապատողների <br/> Ասոցիացիա
+                    />*/}
                 </LogoWrapper>
 
                 <NavLinks>

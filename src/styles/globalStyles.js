@@ -85,6 +85,8 @@ export const GlobalStyles = createGlobalStyle`
   body {
     font-family: "Noto Sans Armenian", sans-serif;
     word-break: break-word;
+    background-color: ${theme.colors.black};
+    color: ${theme.colors.white};
   }
 
   a {
@@ -116,7 +118,6 @@ export const GlobalStyles = createGlobalStyle`
 
       border-radius: 4px;
 
-      background-color: #ffffff87;
       box-shadow: -4px 7px 20px 0 #0000004a;
 
       ${theme.media.md} {
@@ -139,7 +140,7 @@ export const StyledBtn = css`
   padding: 12px 32px;
   border-radius: 10px;
 
-  background-color: ${theme.colors.red};
+  background-color: ${theme.colors.neonBlue};
 
   font-size: 16px;
   text-decoration: none;

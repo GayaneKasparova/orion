@@ -5,26 +5,24 @@ import Banner from "../components/Banner/Banner"
 
 const IndexPage = ({
                        data: {
-                           home,
                            home: {
                                seoSettings,
                                bannerBackgroundImage,
                                bannerTitle,
                                bannerSubtitle,
                                bannerBtnText,
-                               bannerBtnLink,
+                               bannerBtnLink/*,
                                aboutUsTitle,
                                aboutUsText,
                                orionSportsClubTitle,
                                orionSportsClubDescription,
                                orionFightingClubTitle,
-                               orionFightingClubDescription
+                               orionFightingClubDescription*/
                            }
                        }
                    }) => {
-
     return (
-      <>
+      <div>
           <Seo {...seoSettings} />
           <Banner
             bgImage={bannerBackgroundImage}
@@ -33,7 +31,7 @@ const IndexPage = ({
             bannerBtnText={bannerBtnText}
             bannerBtnLink={bannerBtnLink}
           />
-      </>
+      </div>
     )
 }
 

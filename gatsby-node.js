@@ -8,7 +8,7 @@ const path = require(`path`)
 const urls = require('./src/urls')
 const supportedLocales = require("./src/suportedLocales")
 
-exports.createPages = async ({graphiql, actions}) => {
+exports.createPages = async ({actions}) => {
   const {createPage} = actions;
   const locales = supportedLocales.locales;
 
@@ -16,7 +16,13 @@ exports.createPages = async ({graphiql, actions}) => {
     createPage({
       path: urls.homeUrl(locale),
       component: path.resolve(`src/templates/home.js`),
-      context: { locale: locale }
+      context: {locale: locale}
+    })
+
+    createPage({
+      path: urls.demoUrl(locale),
+      component: path.resolve('src/templates/demo.js'),
+      context: {locale: locale}
     })
   }
 }

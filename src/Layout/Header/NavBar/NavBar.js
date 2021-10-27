@@ -67,7 +67,7 @@ const StyledNav = styled.nav`
       bottom: 0;
       height: 2px;
       transition: width .3s ease;
-      background-color: ${theme.colors.red};
+      background-color: ${theme.colors.neonBlue};
     }
 
     &:hover {
@@ -86,8 +86,6 @@ const StyledNav = styled.nav`
     line-height: 27px;
     font-style: ${theme.fontWeights.regular};
     text-decoration: none;
-
-    color: ${theme.colors.blue};
 
     ${theme.media.xl} {
       font-size: ${theme.fontSizes.l};
