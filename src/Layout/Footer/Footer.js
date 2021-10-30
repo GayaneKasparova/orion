@@ -42,7 +42,8 @@ const Footer = () => {
 
 
 const StyledFooter = styled.footer`
-  background-color: #16232C;
+  border-top: 1px solid ${theme.colors.purple};
+  box-shadow: 0 -1px 8px 0 ${theme.colors.purple};
 `
 
 const FooterContainerBox = styled(ContainerBox)`
@@ -74,10 +75,6 @@ const NavLinks = styled.div`
   padding-top: 40px;
   padding-bottom: 40px;
 `
-
-
-
-
 
 export default Footer
 

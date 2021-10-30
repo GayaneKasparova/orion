@@ -4,6 +4,7 @@ import { LocaleDispatchContext, LocaleStateContext } from "../../../context/Loca
 import { supportedLanguages, locales, defaultLocale } from "../../../suportedLocales"
 
 const LocaleControl = () => {
+  const [firstVisit, setFirstVisit] = useState(true)
   const { locale } = useContext(LocaleStateContext)
   const dispatch = useContext(LocaleDispatchContext)
 
@@ -21,19 +22,35 @@ const LocaleControl = () => {
   const pathName = window.location.pathname
   const pathLocaleName = pathName.split("/")[1]
 
-  useEffect(() => {
-    setLocale(locales.includes(pathLocaleName) ? pathLocaleName : defaultLocale)
-  }, [setLocale, pathLocaleName])
-
-  const getTargetPath = (targetLocale) => {
-    if (!pathName.split("/")[2] && targetLocale === defaultLocale ) {
-      return '/'
+  const getTargetPath = useCallback( (targetLocale) => {
+    if (!pathName.split("/")[2] && targetLocale === defaultLocale) {
+      return "/"
     } else {
       const pathNameStart = pathName.slice(0, pathName.indexOf(`${pathLocaleName}`))
       const pathNameEnd = pathName.slice(pathName.indexOf(`${pathLocaleName}`) + 2, pathName.length)
 
       return pathNameStart + targetLocale + pathNameEnd
     }
+  }, [pathName, pathLocaleName])
+
+
+  useEffect(() => {
+    if (!pathLocaleName && firstVisit) {
+      console.log('aha')
+      const targetLocale = window.navigator?.language.slice(0, 2) || defaultLocale
+      setLocale(targetLocale)
+      window.location.replace(getTargetPath(targetLocale))
+    } else {
+      setLocale(locales.includes(pathLocaleName) ? pathLocaleName : defaultLocale)
+    }
+  }, [setLocale, pathLocaleName, firstVisit, getTargetPath])
+
+
+  const handleLocaleChange = (newLocale) => {
+    if (firstVisit) {
+      setFirstVisit(false)
+    }
+    setLocale(newLocale)
   }
 
   return (
@@ -56,7 +73,7 @@ const LocaleControl = () => {
               <li key={langItem.locale}>
                 <Link
                   to={getTargetPath(langItem.locale)}
-                  onClick={() => setLocale(langItem.locale)}
+                  onClick={() => handleLocaleChange(langItem.locale)}
                 >
                   {langItem.lang}
                 </Link>

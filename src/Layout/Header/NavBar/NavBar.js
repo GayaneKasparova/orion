@@ -4,18 +4,18 @@ import {AnchorLink} from "gatsby-plugin-anchor-links";
 import styled from "styled-components";
 import {theme} from "../../../styles/theme";
 
-const NavBar = ({links, className, onClick}) => {
+const NavBar = ({navItems, className, onClick}) => {
 
     return (
         <StyledNav className={className}>
             <ul>
                 {
-                    links.map(link => (
-                        <li key={link.id}>
+                  navItems.map(navItem => (
+                        <li key={navItem.id}>
+                          {navItem.url ? <AnchorLink to={navItem.url} title={navItem.title} onClick={onClick}/> : <span>{navItem.title}</span>}
 
-                            <AnchorLink to={link.url} title={link.title} onClick={onClick}/>
                             {
-                                link.treeChildren.length > 0 && <SubMenu subMenuItems={link.treeChildren}/>
+                              navItem.treeChildren.length > 0 && <SubMenu subMenuItems={navItem.treeChildren}/>
                             }
                         </li>
                     ))
@@ -46,7 +46,6 @@ const StyledNav = styled.nav`
 
         a {
           padding: 16px 0 8px;
-
         }
       }
     }
@@ -64,11 +63,15 @@ const StyledNav = styled.nav`
       position: absolute;
       left: 16px;
       width: 0;
-      bottom: 0;
-      height: 2px;
-      transition: width .3s ease;
-      background-color: ${theme.colors.neonBlue};
-    }
+      bottom: 2px;
+      height: 3px;
+      background-image: linear-gradient(45deg, ${theme.colors.neonBlue}, ${theme.colors.purple});
+      border-radius: 1px;
+      transition: width .35s ease;
+      ${theme.media.lg} {
+        bottom: 16px;
+      }
+      }
 
     &:hover {
       &::after {
@@ -80,15 +83,14 @@ const StyledNav = styled.nav`
   a {
     display: inline-block;
     padding: 32px 8px;
-
-    font-size: ${theme.fontSizes.m};
+    font-size: ${theme.fontSizes.l};
     font-weight: ${theme.fontWeights.semibold};
     line-height: 27px;
     font-style: ${theme.fontWeights.regular};
+    letter-spacing: 1.3px;
     text-decoration: none;
-
     ${theme.media.xl} {
-      font-size: ${theme.fontSizes.l};
+      font-size: ${theme.fontSizes.xl};
     }
   }
 `;

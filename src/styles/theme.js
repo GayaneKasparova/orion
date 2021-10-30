@@ -93,6 +93,7 @@ export const theme = {
         neonBlue: '#00bfdf',
         blue: '#137f87',
         white: '#FFFFFF',
+        darkGrey: '#2c2c2c',
         black: '#171717'
     },
     borderRadius: 4,

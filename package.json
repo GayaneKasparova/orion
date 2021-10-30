@@ -40,7 +40,9 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\""
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
+    "build and serve": "gatsby build && gatsby serve",
+    "gcbs": "gatsby clean && gatsby build && gatsby serve"
   },
   "devDependencies": {
     "prettier": "^1.17.0",

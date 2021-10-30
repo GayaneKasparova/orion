@@ -1,10 +1,11 @@
 import React, { createContext, useReducer } from "react"
+import { defaultLocale } from "../suportedLocales"
 
-export const LocaleStateContext = createContext()
-export const LocaleDispatchContext = createContext()
+export const LocaleStateContext = createContext('')
+export const LocaleDispatchContext = createContext('')
 
 const initialState = {
-  locale: "hy"
+  locale: defaultLocale
 }
 
 const reducer = (state, action) => {

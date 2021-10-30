@@ -5,7 +5,7 @@ const SubMenu = ({subMenuItems}) => (
         {
             subMenuItems.map(item => (
                 <li key={item.id}>
-                    <a href={item.url} target={item.openInNewTab ? "_blank" : "_self"} rel='noreferrer'>
+                    <a href={item.url} target={item?.openInNewTab ? "_blank" : "_self"} rel='noreferrer'>
                         {item.title}
                     </a>
                 </li>

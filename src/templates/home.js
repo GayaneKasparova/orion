@@ -1,43 +1,46 @@
-import React from 'react'
-import {graphql} from "gatsby";
-import Seo from "../components/Seo";
+import React  from "react"
+import { graphql } from "gatsby"
+import Seo from "../components/Seo"
 import Banner from "../components/Banner/Banner"
 
 const IndexPage = ({
-                       data: {
-                           home: {
-                               seoSettings,
-                               bannerBackgroundImage,
-                               bannerTitle,
-                               bannerSubtitle,
-                               bannerBtnText,
-                               bannerBtnLink/*,
+                     data: {
+                       home: {
+                         locale,
+                         seoSettings,
+                         bannerBackgroundImage,
+                         bannerTitle,
+                         bannerSubtitle,
+                         bannerBtnText,
+                         bannerBtnLink/*,
                                aboutUsTitle,
                                aboutUsText,
                                orionSportsClubTitle,
                                orionSportsClubDescription,
                                orionFightingClubTitle,
                                orionFightingClubDescription*/
-                           }
                        }
+                     }
                    }) => {
-    return (
-      <div>
-          <Seo {...seoSettings} />
-          <Banner
-            bgImage={bannerBackgroundImage}
-            title={bannerTitle}
-            subtitle={bannerSubtitle}
-            bannerBtnText={bannerBtnText}
-            bannerBtnLink={bannerBtnLink}
-          />
-      </div>
-    )
+
+  return (
+    <div>
+      <Seo {...seoSettings} />
+      <Banner
+        bgImage={bannerBackgroundImage}
+        title={bannerTitle}
+        subtitle={bannerSubtitle}
+        bannerBtnText={bannerBtnText}
+        bannerBtnLink={bannerBtnLink}
+      />
+    </div>
+  )
 }
 
 export const query = graphql`
     query HomePage($locale: String!){
         home: datoCmsHomePage (locale: {eq: $locale}) {
+            locale
             seoSettings {
                 title
                 description
@@ -47,7 +50,7 @@ export const query = graphql`
                     }
                 }
             }
-            
+
             bannerTitle
             bannerSubtitle
             bannerBackgroundImage {
@@ -55,16 +58,16 @@ export const query = graphql`
             }
             bannerBtnText
             bannerBtnLink
-            
+
             aboutUsTitle
             aboutUsText
 
             orionSportsClubTitle
             orionSportsClubDescription
-            
+
             orionFightingClubTitle
             orionFightingClubDescription
-            
+
         }
     }`
 

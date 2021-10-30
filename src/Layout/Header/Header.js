@@ -11,7 +11,7 @@ import MenuBtn from "./MenuBtn"
 import LocaleControl from "./NavBar/LocaleControl"
 
 const Header = () => {
-  const links = useNavLinks()
+  const navItems = useNavLinks()
   const { width } = useWindowSize()
   const [menuIsOpen, setMenuOpen] = useState(false)
 
@@ -36,7 +36,7 @@ const Header = () => {
         {
           width > 991 ?
             <>
-            <Navbar links={links} />
+            <Navbar navItems={navItems} />
             <LocaleControl/>
             </> :
             <MenuBtn onClick={() => setMenuOpen(!menuIsOpen)} isOpen={menuIsOpen} />
@@ -46,8 +46,8 @@ const Header = () => {
       {
         width <= 991 && menuIsOpen &&
         <ContainerBox>
-          <Navbar
-            links={links}
+          <navItems
+            links={navItems}
             className={"mobileMenu"}
             onClick={() => setMenuOpen(false)} />
         </ContainerBox>
@@ -63,7 +63,8 @@ const StyledHeader = styled.header`
   left: 0;
   right: 0;
   z-index: 9999;
-  box-shadow: 3px -5px 8px 2px ${theme.colors.neonBlue};
+  border-bottom: 1px solid ${theme.colors.neonBlue};
+  box-shadow: 0 1px 6px 0 ${theme.colors.neonBlue};
 `
 
 const HeaderContainerBox = styled(ContainerBox)`

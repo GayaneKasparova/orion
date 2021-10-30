@@ -69,8 +69,8 @@ export const GlobalStyles = createGlobalStyle`
 
   html {
     box-sizing: border-box;
-
     font-size: 16px;
+    letter-spacing: 1px;
   }
 
   *,
@@ -85,14 +85,19 @@ export const GlobalStyles = createGlobalStyle`
   body {
     font-family: "Noto Sans Armenian", sans-serif;
     word-break: break-word;
-    background-color: ${theme.colors.black};
+    background-color: ${theme.colors.darkGrey};
     color: ${theme.colors.white};
   }
 
   a {
     text-decoration: none;
+    &:active,
+    &:focus,
+    &:visited {
+      color: inherit;
+    }
   }
-
+  
   ul {
     list-style-type: none;
   }
