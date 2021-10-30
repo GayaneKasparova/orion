@@ -6,7 +6,6 @@ import Banner from "../components/Banner/Banner"
 const IndexPage = ({
                      data: {
                        home: {
-                         locale,
                          seoSettings,
                          bannerBackgroundImage,
                          bannerTitle,
@@ -40,7 +39,6 @@ const IndexPage = ({
 export const query = graphql`
     query HomePage($locale: String!){
         home: datoCmsHomePage (locale: {eq: $locale}) {
-            locale
             seoSettings {
                 title
                 description

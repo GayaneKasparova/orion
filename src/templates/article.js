@@ -6,19 +6,19 @@ import ArticleContent from "../components/Article/ArticleContent"
 import { ContainerBox } from "../components/common/ContainerBox/ContainerBox"
 import styled from "styled-components"
 import { theme } from "../styles/theme"
-import { LocaleStateContext } from "../context/LocaleContextProvider"
 
 const Article = ({
                    data: {
                      article: {
                        seoSettings,
                        title,
+                       locale,
                        coverImage,
                        content
                      }
                    }
                  }) => {
-
+  console.log(locale)
   return (
     <ContainerBox>
       <Seo {...seoSettings} />
@@ -41,6 +41,7 @@ export const query = graphql`
                     }
                 }
             }
+            locale
             title
             coverImage {
                 gatsbyImageData(layout: FULL_WIDTH, aspectRatio: 1.7)
