@@ -94,7 +94,7 @@ export const theme = {
         blue: '#137f87',
         white: '#FFFFFF',
         darkGrey: '#2c2c2c',
-        black: '#171717'
+        black: '#222222'
     },
     borderRadius: 4,
     borderRadiusSizes: {

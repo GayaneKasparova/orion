@@ -63,6 +63,7 @@ const StyledHeader = styled.header`
   left: 0;
   right: 0;
   z-index: 9999;
+  background-color: ${theme.colors.black};
   border-bottom: 1px solid ${theme.colors.neonBlue};
   box-shadow: 0 1px 6px 0 ${theme.colors.neonBlue};
 `

@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React  from "react"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
 import Seo from "../components/Seo"
@@ -18,7 +18,7 @@ const Article = ({
                      }
                    }
                  }) => {
-  console.log(locale)
+
   return (
     <ContainerBox>
       <Seo {...seoSettings} />

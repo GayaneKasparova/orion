@@ -36,7 +36,6 @@ const LocaleControl = () => {
 
   useEffect(() => {
     if (!pathLocaleName && firstVisit) {
-      console.log('aha')
       const targetLocale = window.navigator?.language.slice(0, 2) || defaultLocale
       setLocale(targetLocale)
       window.location.replace(getTargetPath(targetLocale))
