@@ -1,19 +1,22 @@
-import React from "react";
-import styled from "styled-components";
-import {theme} from "../../../styles/theme";
-import {ContainerBox} from "../ContainerBox/ContainerBox";
+import React from "react"
+import styled from "styled-components"
+import { theme } from "../../../styles/theme"
+import { ContainerBox } from "../ContainerBox/ContainerBox"
 import { Link } from "gatsby"
 import useDictionary from "../../../hooks/use-dictionary"
 
-const TitledSection = ({title, id, children, seeMoreLink}) => (
-    <SectionWrapper id={id}>
-        <SectionTitle>{title}</SectionTitle>
-        <SectionContent>
-            {children}
-            {seeMoreLink && <SeeMore link={seeMoreLink} text={useDictionary('seeMore')}/>}
-        </SectionContent>
+const TitledSection = ({ title, /*id,*/ children, seeMoreLink }) => {
+  const seeMoreText = useDictionary("seeMore")
+  return (
+    <SectionWrapper /*id={id}*/>
+      <SectionTitle>{title}</SectionTitle>
+      <SectionContent>
+        {children}
+        {seeMoreLink && <SeeMore link={seeMoreLink} text={seeMoreText} />}
+      </SectionContent>
     </SectionWrapper>
-)
+  )
+}
 
 const SectionWrapper = styled(ContainerBox)`
   display: flex;
@@ -29,10 +32,12 @@ const SectionWrapper = styled(ContainerBox)`
     padding-top: 48px;
     padding-bottom: 48px;
   }
+
   ${theme.media.lg} {
     padding-top: 56px;
     padding-bottom: 56px;
   }
+
   ${theme.media.xl} {
     padding-top: 140px;
     padding-bottom: 140px;
@@ -48,7 +53,7 @@ const SectionTitle = styled.h2`
   font-family: Noto Sans Armenian, sans-serif;
   font-weight: 500;
   color: ${theme.colors.red};
-  
+
   ${theme.media.md} {
     max-width: 232px;
     width: 25%;
@@ -59,22 +64,21 @@ const SectionContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  
-  ul{
+
+  ul {
     width: 100%;
     list-style-type: none;
   }
-  
-  a{
+
+  a {
     text-decoration: none;
   }
-  
+
   ${theme.media.md} {
     max-width: 872px;
     width: 75%;
   }
 `
-
 
 
 export default TitledSection

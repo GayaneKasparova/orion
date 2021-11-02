@@ -6,7 +6,7 @@ import {uniqueId} from 'lodash'
 
 const Grid = styled.ul`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${props => props.verticalOnMobile ? 'column' : 'row'};
   gap: 24px;
 
   ${theme.media.md} {
@@ -24,9 +24,9 @@ const GridItem = styled.li`
     margin-bottom: 0;
   } 
 `
-const ContentGrid = ({cols, children }) => {
+const ContentGrid = ({cols, children, verticalOnMobile = true }) => {
     return (
-        <Grid>
+        <Grid verticalOnMobile={verticalOnMobile}>
             {children.map(item => (
                 <GridItem key={uniqueId('col')} cols={cols}>{item}</GridItem>
             ))}

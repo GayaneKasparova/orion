@@ -1,7 +1,8 @@
-import React  from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import Seo from "../components/Seo"
 import Banner from "../components/Banner/Banner"
+import Team from "../components/Team/Team"
 
 const IndexPage = ({
                      data: {
@@ -11,13 +12,9 @@ const IndexPage = ({
                          bannerTitle,
                          bannerSubtitle,
                          bannerBtnText,
-                         bannerBtnLink/*,
-                               aboutUsTitle,
-                               aboutUsText,
-                               orionSportsClubTitle,
-                               orionSportsClubDescription,
-                               orionFightingClubTitle,
-                               orionFightingClubDescription*/
+                         bannerBtnLink,
+                         teamTitle,
+                         team
                        }
                      }
                    }) => {
@@ -31,6 +28,11 @@ const IndexPage = ({
         subtitle={bannerSubtitle}
         bannerBtnText={bannerBtnText}
         bannerBtnLink={bannerBtnLink}
+      />
+
+      <Team
+        teamTitle={teamTitle}
+        team={team}
       />
     </div>
   )
@@ -57,15 +59,15 @@ export const query = graphql`
             bannerBtnText
             bannerBtnLink
 
-            aboutUsTitle
-            aboutUsText
-
-            orionSportsClubTitle
-            orionSportsClubDescription
-
-            orionFightingClubTitle
-            orionFightingClubDescription
-
+            teamTitle
+            team {
+                name
+                photo {
+                    gatsbyImageData(aspectRatio: 1, imgixParams: {w: "200", h: "200", fit: "crop"})
+                }
+                title
+                bio
+            }
         }
     }`
 
