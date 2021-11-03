@@ -6,9 +6,8 @@ import { graphql } from "gatsby"
 
 const Team = ({ team, teamTitle }) => (
 
-  <TitledSection title={teamTitle}>
+  <TitledSection title={teamTitle} id={'team'}>
     <ContentGrid cols={4} verticalOnMobile={false}>
-
       {
         team.map(member => <PersonIcon {...member} key={member.id}/>)
       }

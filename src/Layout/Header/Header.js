@@ -1,19 +1,31 @@
 import React, { useState } from "react"
 import useNavLinks from "../../hooks/use-nav-links"
 import Navbar from "./NavBar/NavBar"
-import { Link } from "gatsby"
+import { graphql, Link, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 import { ContainerBox } from "../../components/common/ContainerBox/ContainerBox"
-//import {StaticImage} from "gatsby-plugin-image";
 import { theme } from "../../styles/theme"
 import { useWindowSize } from "../../hooks/useWindowSize"
 import MenuBtn from "./MenuBtn"
 import LocaleControl from "./NavBar/LocaleControl"
+import { StaticImage } from "gatsby-plugin-image"
 
 const Header = () => {
-  const navItems = useNavLinks()
+  const navItems = useNavLinks('header')
   const { width } = useWindowSize()
   const [menuIsOpen, setMenuOpen] = useState(false)
+
+  const { global: { logo } } = useStaticQuery(
+    graphql`
+        query Global {
+            global: datoCmsGlobal {
+                logo {
+                    url
+                }
+            }
+        }
+    `
+  )
 
   return (
 
@@ -23,14 +35,11 @@ const Header = () => {
           to={"/"}
           onClick={() => setMenuOpen(false)}
         >
-          {/*<StaticImage
-                        src={"../../images/Logo.svg"}
+          <img
+                        src={logo.url}
                         alt={'Logo'}
-                        layout="fixed"
-                        width={42}
-                        height={54}
-                        style={{marginRight: 16}}
-                    />*/}
+                        style={{width: '142px', marginRight: 16}}
+          />
         </LogoWrapper>
 
         {
@@ -46,10 +55,11 @@ const Header = () => {
       {
         width <= 991 && menuIsOpen &&
         <ContainerBox>
-          <navItems
-            links={navItems}
-            className={"mobileMenu"}
+          <Navbar
+            navItems={navItems}
             onClick={() => setMenuOpen(false)} />
+          <LocaleControl/>
+
         </ContainerBox>
       }
 

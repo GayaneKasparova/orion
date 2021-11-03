@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Seo from "../components/Seo"
 import Banner from "../components/Banner/Banner"
 import Team from "../components/Team/Team"
+import Contacts from "../components/Contacts/Contacts"
 
 const IndexPage = ({
                      data: {
@@ -34,6 +35,9 @@ const IndexPage = ({
         teamTitle={teamTitle}
         team={team}
       />
+
+      <Contacts/>
+
     </div>
   )
 }

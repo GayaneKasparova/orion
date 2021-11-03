@@ -5,10 +5,10 @@ import { ContainerBox } from "../ContainerBox/ContainerBox"
 import { Link } from "gatsby"
 import useDictionary from "../../../hooks/use-dictionary"
 
-const TitledSection = ({ title, /*id,*/ children, seeMoreLink }) => {
+const TitledSection = ({ title, id, children, seeMoreLink }) => {
   const seeMoreText = useDictionary("seeMore")
   return (
-    <SectionWrapper /*id={id}*/>
+    <SectionWrapper id={id}>
       <SectionTitle>{title}</SectionTitle>
       <SectionContent>
         {children}
@@ -47,6 +47,7 @@ const SeeMore = styled(Link)`
 
 `
 const SectionTitle = styled.h2`
+  margin-bottom: 32px;
   font-size: 24px;
   line-height: 150%;
   letter-spacing: 0.05em;
@@ -75,6 +76,7 @@ const SectionContent = styled.div`
   }
 
   ${theme.media.md} {
+    padding-top: ${theme.space.xl}px;
     max-width: 872px;
     width: 75%;
   }

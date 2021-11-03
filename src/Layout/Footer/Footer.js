@@ -8,7 +8,7 @@ import {theme} from "../../styles/theme";
 
 
 const Footer = () => {
-    const links = useNavLinks();
+    const links = useNavLinks('footer');
 
     return (
         <StyledFooter>
