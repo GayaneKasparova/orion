@@ -53,7 +53,8 @@ const LinksList = styled.ul`
     margin-left: 16px;
   }
   img {
-    width: 32px;
+    border-radius: 50%;
+    width: 28px;
   }
 `
 
