@@ -12,7 +12,6 @@ const Article = ({
                      article: {
                        seoSettings,
                        title,
-                       locale,
                        coverImage,
                        content
                      }

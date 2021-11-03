@@ -61,7 +61,9 @@ export const query = graphql`
 
             teamTitle
             team {
+                id
                 name
+                slug
                 photo {
                     gatsbyImageData(aspectRatio: 1, imgixParams: {w: "200", h: "200", fit: "crop"})
                 }

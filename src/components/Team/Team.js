@@ -10,7 +10,7 @@ const Team = ({ team, teamTitle }) => (
     <ContentGrid cols={6} verticalOnMobile={false}>
 
       {
-        team.map(trainer => <PersonIcon {...trainer} />)
+        team.map(member => <PersonIcon {...member} key={member.id}/>)
       }
     </ContentGrid>
   </TitledSection>

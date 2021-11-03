@@ -1,29 +1,29 @@
-import React from "react";
+import React from "react"
 import styled from "styled-components"
-import {ContainerBox} from "../common/ContainerBox/ContainerBox";
-import {theme} from "../../styles/theme";
-import {AnchorLink} from "gatsby-plugin-anchor-links";
-import {StyledBtn} from "../../styles/globalStyles";
+import { ContainerBox } from "../common/ContainerBox/ContainerBox"
+import { theme } from "../../styles/theme"
+import { AnchorLink } from "gatsby-plugin-anchor-links"
+import { StyledBtn } from "../../styles/globalStyles"
 
 const BannerBlock = ({
-                         bgImage,
-                         title,
-                         subtitle,
-                         bannerBtnText,
-                         bannerBtnLink
+                       bgImage,
+                       title,
+                       subtitle,
+                       bannerBtnText,
+                       bannerBtnLink
                      }) => {
 
-    return (
-        <Banner bgImage={bgImage} onScroll={() => window.scrollTo({
-            top: '100vh',
-            behavior: 'smooth',
-        })}>
-            <ContainerBox className='opacity-block'>
-                <BannerTitle>{subtitle}</BannerTitle>
-                <BannerText>{title}</BannerText>
-                <BannerButton to={bannerBtnLink} title={bannerBtnText}/>
-            </ContainerBox>
-        </Banner>)
+  return (
+    <Banner bgImage={bgImage} onScroll={() => window.scrollTo({
+      top: "100vh",
+      behavior: "smooth"
+    })}>
+      <ContainerBox className="opacity-block">
+        <BannerTitle>{subtitle}</BannerTitle>
+        <BannerText>{title}</BannerText>
+        <BannerButton to={bannerBtnLink} title={bannerBtnText} />
+      </ContainerBox>
+    </Banner>)
 }
 
 const Banner = styled.div`
@@ -35,6 +35,7 @@ const Banner = styled.div`
   background-size: cover;
   background-position: center;
   text-align: center;
+  transition: transform .3s ease;
 
   ${theme.media.md} {
     padding: ${theme.space.xl}px 0;
@@ -55,22 +56,16 @@ const Banner = styled.div`
 
     &::before {
       top: -16px;
-      right: -10px;
+      right: -16px;
       bottom: -16px;
-      left: -10px;
-
-      ${theme.media.md} {
-        top: -16px;
-        right: -10px;
-        bottom: -16px;
-        left: -10px;
-      }
+      left: -16px;
+      background: #1c1c1c91;
 
       ${theme.media.lg} {
         top: -32px;
-        right: 88px;
+        right: -32px;
         bottom: -32px;
-        left: -88px;
+        left: -32px;
       }
     }
   }

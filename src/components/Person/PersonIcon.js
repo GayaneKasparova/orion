@@ -1,16 +1,20 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { theme } from "../../styles/theme"
+import { Link } from "gatsby"
+import { teamMemberUrl } from "../../urls"
+import { LocaleStateContext } from "../../context/LocaleContextProvider"
 
-const PersonIcon = ({ name, photo, title }) => {
+const PersonIcon = ({ name, photo, title, slug }) => {
+  const  {locale} = useContext(LocaleStateContext)
   return (
-    <>
+    <Link to={teamMemberUrl(locale, slug)}>
       <PhotoFrame>
         {photo && <Photo image={photo.gatsbyImageData} alt={`${name}'s photo`} />}
       </PhotoFrame>
       <Name>{name}</Name>
-    </>
+    </Link>
   )
 }
 const PhotoFrame = styled.div`
@@ -29,7 +33,7 @@ const PhotoFrame = styled.div`
     bottom: -3px;
     left: -3px;
     background-image: linear-gradient(to right, ${theme.colors.neonBlue} 15%, ${theme.colors.pink} 100%);
-    transition: all .5s ease;
+    transition: all .7s ease;
   }
 
   &:hover {

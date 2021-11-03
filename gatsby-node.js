@@ -12,13 +12,24 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const locales = supportedLocales.locales
 
-  const { data: { articles } } = await graphql(`
+  const {
+    data: {
+      articles,
+      team
+    }
+  } = await graphql(`
     {
       articles: allDatoCmsArticle {
         nodes {
           slug
           locale
           type: articleType
+        }
+      }
+      team: allDatoCmsTeam {
+        nodes {
+          locale
+          slug
         }
       }
     }
@@ -47,6 +58,19 @@ exports.createPages = async ({ graphql, actions }) => {
           context: {
             slug: article.slug,
             locale: article.locale
+          }
+        })
+      }
+    )
+
+    // Team pages
+    team.nodes.forEach((teamMember) => {
+        createPage({
+          path: urls.teamMemberUrl(teamMember.locale, teamMember.slug),
+          component: path.resolve(`./src/templates/teamMember.js`),
+          context: {
+            slug: teamMember.slug,
+            locale: teamMember.locale
           }
         })
       }
