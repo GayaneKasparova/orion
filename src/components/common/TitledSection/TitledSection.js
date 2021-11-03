@@ -19,6 +19,14 @@ const TitledSection = ({ title, id, children, seeMoreLink }) => {
 }
 
 const SectionWrapper = styled(ContainerBox)`
+  
+  @keyframe fullWidth{
+    100% {
+      width: 100%;
+    }
+  }
+  
+  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -31,6 +39,13 @@ const SectionWrapper = styled(ContainerBox)`
 
     padding-top: 48px;
     padding-bottom: 48px;
+    &:hover {
+      h2::after {
+        transform: scaleX(1.3) translate(15%);
+        transition: all .3s ease;
+
+      }
+    }
   }
 
   ${theme.media.lg} {
@@ -47,6 +62,7 @@ const SeeMore = styled(Link)`
 
 `
 const SectionTitle = styled.h2`
+  position: relative;
   margin-bottom: 32px;
   font-size: 24px;
   line-height: 150%;
@@ -54,7 +70,17 @@ const SectionTitle = styled.h2`
   font-family: Noto Sans Armenian, sans-serif;
   font-weight: 500;
   color: ${theme.colors.red};
-
+  
+  &::after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 42px;
+    height: 3px;
+    width: 52px;
+    background-image: linear-gradient(-90deg, ${theme.colors.neonBlue} 0%, ${theme.colors.pink} 100%);
+  }
+  
   ${theme.media.md} {
     max-width: 232px;
     width: 25%;
