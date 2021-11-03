@@ -83,14 +83,14 @@ const StyledNav = styled.nav`
   a {
     display: inline-block;
     padding: 32px 8px;
-    font-size: ${theme.fontSizes.l};
-    font-weight: ${theme.fontWeights.semibold};
+    font-size: ${theme.fontSizes.m};
+    font-weight: ${theme.fontWeights.medium};
     line-height: 27px;
     font-style: ${theme.fontWeights.regular};
     letter-spacing: 1.3px;
     text-decoration: none;
     ${theme.media.xl} {
-      font-size: ${theme.fontSizes.xl};
+      font-size: ${theme.fontSizes.l};
     }
   }
 `;

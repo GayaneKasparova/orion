@@ -21,7 +21,7 @@ const BannerBlock = ({
       <ContainerBox className="opacity-block">
         <BannerTitle>{subtitle}</BannerTitle>
         <BannerText>{title}</BannerText>
-        <BannerButton to={bannerBtnLink} title={bannerBtnText} />
+        { bannerBtnLink && bannerBtnLink && <BannerButton to={bannerBtnLink} title={bannerBtnText} />}
       </ContainerBox>
     </Banner>)
 }
@@ -102,7 +102,7 @@ const BannerText = styled.p` {
   font-style: normal;
   font-weight: ${theme.fontWeights.medium};
 
-  color: ${theme.colors.blue};
+  color: ${theme.colors.neonBlue};
 
   ${theme.media.md} {
     font-size: 44px;
