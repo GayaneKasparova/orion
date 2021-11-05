@@ -4,13 +4,27 @@ import { theme } from "../../../styles/theme"
 import { ContainerBox } from "../ContainerBox/ContainerBox"
 import { Link } from "gatsby"
 import useDictionary from "../../../hooks/use-dictionary"
+import { useWindowSize } from "../../../hooks/useWindowSize"
 
-const TitledSection = ({ title, id, children, seeMoreLink }) => {
+const TitledSection = ({ title, id, children, seeMoreLink, fullWidth = false }) => {
   const seeMoreText = useDictionary("seeMore")
+  const { width } = useWindowSize()
   return (
-    <SectionWrapper id={id}>
-      <SectionTitle>{title}</SectionTitle>
-      <SectionContent>
+    <SectionWrapper
+      id={id}
+      fullWidth={fullWidth}
+    >
+      {
+        width < theme.breakpoints.md ?
+          <ContainerBox>
+            <SectionTitle>{title}</SectionTitle>
+          </ContainerBox> :
+          <SectionTitle>{title}</SectionTitle>
+
+      }
+
+
+      <SectionContent fullWidth={fullWidth}>
         {children}
         {seeMoreLink && <SeeMore link={seeMoreLink} text={seeMoreText} />}
       </SectionContent>
@@ -19,14 +33,12 @@ const TitledSection = ({ title, id, children, seeMoreLink }) => {
 }
 
 const SectionWrapper = styled(ContainerBox)`
-  
-  @keyframe fullWidth{
-    100% {
-      width: 100%;
-    }
+
+@keyframe fullWidth {
+  100% {
+    width: 100%;
   }
-  
-  
+} width: ${props => props.fullWidth ? `100%` : `auto`};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -39,6 +51,7 @@ const SectionWrapper = styled(ContainerBox)`
 
     padding-top: 48px;
     padding-bottom: 48px;
+
     &:hover {
       h2::after {
         transform: scaleX(1.3) translate(15%);
@@ -70,7 +83,7 @@ const SectionTitle = styled.h2`
   font-family: Noto Sans Armenian, sans-serif;
   font-weight: 500;
   color: ${theme.colors.red};
-  
+
   &::after {
     content: "";
     position: absolute;
@@ -80,14 +93,14 @@ const SectionTitle = styled.h2`
     width: 52px;
     background-image: linear-gradient(-90deg, ${theme.colors.neonBlue} 0%, ${theme.colors.pink} 100%);
   }
-  
+
   ${theme.media.md} {
     max-width: 232px;
     width: 25%;
   }
 `
 
-const SectionContent = styled.div`
+const SectionContent = styled(ContainerBox)`
   display: flex;
   flex-direction: column;
   align-items: flex-end;

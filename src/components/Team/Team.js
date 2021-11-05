@@ -3,17 +3,32 @@ import PersonIcon from "../Person/PersonIcon"
 import React from "react"
 import TitledSection from "../common/TitledSection/TitledSection"
 import { graphql } from "gatsby"
+import { useWindowSize } from "../../hooks/useWindowSize"
+import { theme } from "../../styles/theme"
 
-const Team = ({ team, teamTitle }) => (
+const Team = ({ team, teamTitle }) => {
+  const {width} = useWindowSize()
 
-  <TitledSection title={teamTitle} id={'team'}>
-    <ContentGrid cols={4} verticalOnMobile={false} scrollable={true}>
-      {
-        team.map(member => <PersonIcon {...member} key={member.id}/>)
-      }
-    </ContentGrid>
-  </TitledSection>
-)
+
+  return (
+    <TitledSection
+      title={teamTitle}
+      id={"team"}
+      fullWidth={width < theme.breakpoints.md}
+    >
+      <ContentGrid
+        cols={4}
+        verticalOnMobile={false}
+        scrollable={true}
+        minWidth={120}
+      >
+        {
+          team.map(member => <PersonIcon {...member} key={member.id} />)
+        }
+      </ContentGrid>
+    </TitledSection>
+  )
+}
 
 export default Team
 
