@@ -1,4 +1,5 @@
 require("dotenv").config()
+//const {styles} = require("./src/components/Map/styles")
 
 module.exports = {
     siteMetadata: {

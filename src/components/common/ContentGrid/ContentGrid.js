@@ -8,25 +8,28 @@ const Grid = styled.ul`
   display: flex;
   flex-direction: ${props => props.verticalOnMobile ? 'column' : 'row'};
   gap: 24px;
+  flex-wrap: ${props => props.scrollable ? 'nowrap' : 'wrap'};
+  overflow-x: auto;
 
   ${theme.media.md} {
     flex-direction: row;
     justify-content: space-between;
-    flex-wrap: wrap;
   }
 `
 
 const GridItem = styled.li`
   margin-bottom: 32px;
+  width: ${props => !props.scrollable ? `calc(${100 / props.cols}% - 20px)` : '100%'};
+
 
   ${theme.media.md} {
-    width: ${props => `calc(${100 / props.cols}% - 20px)`};
+    min-width: 100px;
     margin-bottom: 0;
   } 
 `
-const ContentGrid = ({cols, children, verticalOnMobile = true }) => {
+const ContentGrid = ({cols, children, scrollable, verticalOnMobile = true }) => {
     return (
-        <Grid verticalOnMobile={verticalOnMobile}>
+        <Grid verticalOnMobile={verticalOnMobile} scrollable={scrollable}>
             {children.map(item => (
                 <GridItem key={uniqueId('col')} cols={cols}>{item}</GridItem>
             ))}

@@ -8,7 +8,6 @@ import { theme } from "../../styles/theme"
 import { useWindowSize } from "../../hooks/useWindowSize"
 import MenuBtn from "./MenuBtn"
 import LocaleControl from "./NavBar/LocaleControl"
-import { StaticImage } from "gatsby-plugin-image"
 
 const Header = () => {
   const navItems = useNavLinks('header')

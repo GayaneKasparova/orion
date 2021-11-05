@@ -21,7 +21,7 @@ const IndexPage = ({
                    }) => {
 
   return (
-    <div>
+    <div id={'home'}>
       <Seo {...seoSettings} />
       <Banner
         bgImage={bannerBackgroundImage}
