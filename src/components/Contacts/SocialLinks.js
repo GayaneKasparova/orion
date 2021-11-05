@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { LocaleStateContext } from "../../context/LocaleContextProvider"
 import styled from "styled-components"
+import { theme } from "../../styles/theme"
 
 const SocialLinks = () => {
   const data = useStaticQuery(
@@ -47,10 +48,21 @@ const SocialLinks = () => {
 
 const LinksList = styled.ul`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
+  
+  ${theme.media.md} {
+    justify-content: flex-end;
+  }
+  
   li {
     margin-left: 16px;
+    &:first-of-type {
+      margin-left: 0;
+      ${theme.media.md} {
+        margin-left: 16px;
+      }
+    }
   }
   img {
     border-radius: 50%;
