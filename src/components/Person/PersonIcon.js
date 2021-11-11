@@ -6,14 +6,15 @@ import { Link } from "gatsby"
 import { teamMemberUrl } from "../../urls"
 import { LocaleStateContext } from "../../context/LocaleContextProvider"
 
-const PersonIcon = ({ name, photo, title, slug }) => {
+const PersonIcon = ({ firstName, lastName, photo, title, slug }) => {
   const  {locale} = useContext(LocaleStateContext)
+  console.log()
   return (
     <Link to={teamMemberUrl(locale, slug)}>
       <PhotoFrame>
-        {photo && <Photo image={photo.gatsbyImageData} alt={`${name}'s photo`} />}
+        {photo && <Photo image={photo.gatsbyImageData} alt={`${firstName} ${lastName}'s photo`} />}
       </PhotoFrame>
-      <Name>{name}</Name>
+      <Name>{firstName}{lastName ? ` ${lastName?.slice(0,1)}.` : ''}</Name>
     </Link>
   )
 }
@@ -45,7 +46,9 @@ const PhotoFrame = styled.div`
 `
 
 const Photo = styled(GatsbyImage)`
-  border-radius: 50%;
+  * {
+    border-radius: 50%;
+  }
   overflow: hidden;
 `
 

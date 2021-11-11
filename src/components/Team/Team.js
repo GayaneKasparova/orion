@@ -14,13 +14,14 @@ const Team = ({ team, teamTitle }) => {
     <TitledSection
       title={teamTitle}
       id={"team"}
-      fullWidth={width < theme.breakpoints.md}
+      fullWidth={width < theme.breakpoints.lg}
     >
       <ContentGrid
         cols={4}
         verticalOnMobile={false}
         scrollable={true}
         minWidth={120}
+        gridStyles={{maxWidth: '100%', margin: 'auto'}}
       >
         {
           team.map(member => <PersonIcon {...member} key={member.id} />)
@@ -36,7 +37,8 @@ export const query = graphql`
     fragment Team on DatoCmsPerson {
         title
         person {
-            name
+            firstName
+            lastName
             photo {
                 gatsbyImageData(aspectRatio: 1, imgixParams: {w: "200", h: "200", fit: "crop"})
             }

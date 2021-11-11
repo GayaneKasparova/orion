@@ -49,6 +49,12 @@ exports.createPages = async ({ graphql, actions }) => {
       context: { locale: locale }
     })
 
+    createPage({
+      path: urls.sportsClubUrl(locale),
+      component: path.resolve("src/templates/sportsClub.js"),
+      context: { locale: locale }
+    })
+
 
     // Article pages
     articles.nodes.forEach((article) => {

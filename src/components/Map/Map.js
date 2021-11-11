@@ -1,52 +1,35 @@
-import React, { useEffect, useState } from "react"
-import { Helmet } from "react-helmet"
-import { styles } from "./styles"
+import React from "react"
 import styled from "styled-components"
+import { theme } from "../../styles/theme"
 
 const Map = () => {
 
-  const [mapInited, setMapInited] = useState(false)
-
-  useEffect(() => {
-    const initMap = () => {
-
-      const orion = { lat: 40.18758246996009, lng:  44.52140231554458 }
-      const map = new window.google.maps.Map(document.getElementById("map"), {
-        zoom: 12,
-        center: orion,
-        style: styles
-      })
-      const marker = new window.google.maps.Marker({
-        position: orion,
-        map: map
-      })
-    }
-
-    if (!mapInited) {
-      initMap()
-      setMapInited(true)
-    }
-  }, [mapInited])
-
   return (
-    <>
-      <Helmet>
-        <script
-          src={`https://maps.googleapis.com/maps/api/js?key=AIzaSyByEaFAibbYQu-EEjd0Qxe4ZszLeFFwiIw`}
-           async
-        />
+    <MapWrapper dangerouslySetInnerHTML={{
+      __html: "<iframe src=\"https://maps.google.com/maps?q=40.1892341736294, 44.51844651157423&z=18&output=embed\" width=\"400\" height=\"260\" frameborder=\"0\" style=\"border:0\"></iframe>\n"
+    }} />
 
-      </Helmet>
-
-      <MapWindow id={"map"} />
-    </>
   )
 }
 
-const MapWindow = styled.div`
-  margin-top: 32px;
-  height: 400px;
-  width: 100%;
-`
-
 export default Map
+
+const MapWrapper = styled.div`
+  max-width: 100%;
+  margin-right: auto;
+  margin-top: ${theme.space.s}px;
+
+  ${theme.media.md} {
+    margin-left: auto;
+    margin-right: 0;
+    margin-top: ${theme.space.m}px;
+  }
+
+  ${theme.media.lg} {
+    margin-top: ${theme.space.l}px;
+  }
+
+  iframe {
+    width: 100%;
+  }
+`

@@ -2,10 +2,10 @@ import styled from 'styled-components'
 import { theme, containerMaxWidths } from '../../../styles/theme'
 
 export const ContainerBox = styled.div`
-  max-width: ${containerMaxWidths.sm}px;
+  max-width: ${props => !props.fullWidth ? `${containerMaxWidths.sm}px` : `100%`};
   width: ${props => !props.fullWidth ? `calc(100% - ${theme.space.m * 2}px)` : `100%`};
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: ${props => props.fullWidth ? '0' : 'auto'};
+  margin-right: ${props => props.fullWidth ? '0' : 'auto'};
   
   
   ${theme.media.md} {

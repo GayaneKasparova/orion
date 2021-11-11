@@ -30,8 +30,6 @@ const StyledNav = styled.nav`
   transition: min-height .3s ease .5s;
 
   &.mobileMenu {
-    min-height: calc(100vh - 90px);
-
     ul {
       display: flex;
       flex-direction: column;

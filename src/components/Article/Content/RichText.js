@@ -6,7 +6,7 @@ import {theme} from "../../../styles/theme";
 const RichText = ({ data: { title, body } } ) => {
     return (
         <div>
-            <RichTextHeading>{title}</RichTextHeading>
+            {title && <RichTextHeading>{title}</RichTextHeading>}
             <RichTextBody dangerouslySetInnerHTML={{__html: body ?? '' }}/>
         </div>
     )

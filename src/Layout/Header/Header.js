@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import useNavLinks from "../../hooks/use-nav-links"
 import Navbar from "./NavBar/NavBar"
 import { graphql, Link, useStaticQuery } from "gatsby"
@@ -8,9 +8,11 @@ import { theme } from "../../styles/theme"
 import { useWindowSize } from "../../hooks/useWindowSize"
 import MenuBtn from "./MenuBtn"
 import LocaleControl from "./NavBar/LocaleControl"
+import { defaultLocale } from "../../suportedLocales"
+import { LocaleStateContext } from "../../context/LocaleContextProvider"
 
 const Header = () => {
-  const navItems = useNavLinks('header')
+  const navItems = useNavLinks("header")
   const { width } = useWindowSize()
   const [menuIsOpen, setMenuOpen] = useState(false)
 
@@ -26,26 +28,32 @@ const Header = () => {
     `
   )
 
+  const closeMenu = () => {
+    console.log('mtav')
+    setMenuOpen(false)
+  }
+
+  const {locale} = useContext(LocaleStateContext)
   return (
 
     <StyledHeader>
       <HeaderContainerBox>
         <LogoWrapper
-          to={"/"}
-          onClick={() => setMenuOpen(false)}
+          to={`/${locale !== defaultLocale ? locale : ''}`}
+          onClick={() => closeMenu}
         >
           <img
-                        src={logo.url}
-                        alt={'Logo'}
-                        style={{width: '142px', marginRight: 16}}
+            src={logo.url}
+            alt={"Logo"}
+            style={{ width: "142px", marginRight: 16 }}
           />
         </LogoWrapper>
 
         {
           width > 991 ?
             <>
-            <Navbar navItems={navItems} />
-            <LocaleControl/>
+              <Navbar navItems={navItems} />
+              <LocaleControl />
             </> :
             <MenuBtn onClick={() => setMenuOpen(!menuIsOpen)} isOpen={menuIsOpen} />
         }
@@ -53,11 +61,12 @@ const Header = () => {
 
       {
         width <= 991 && menuIsOpen &&
-        <ContainerBox>
+        <ContainerBox className={'open'}>
           <Navbar
             navItems={navItems}
-            onClick={() => setMenuOpen(false)} />
-          <LocaleControl/>
+            className={"mobileMenu"}
+            onClick={() => closeMenu} />
+          <LocaleControl />
 
         </ContainerBox>
       }
@@ -75,6 +84,15 @@ const StyledHeader = styled.header`
   background-color: ${theme.colors.black};
   border-bottom: 1px solid ${theme.colors.neonBlue};
   box-shadow: 0 1px 6px 0 ${theme.colors.neonBlue};
+ .open {
+   min-height: calc(100vh - 91px);
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   padding-bottom: 15px;
+ }
+  
+
 `
 
 const HeaderContainerBox = styled(ContainerBox)`

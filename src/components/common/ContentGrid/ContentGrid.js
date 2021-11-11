@@ -11,7 +11,7 @@ const Grid = styled.ul`
   flex-wrap: ${props => props.scrollable ? "nowrap" : "wrap"};
   overflow-x: auto;
 
-  ${theme.media.md} {
+  ${theme.media.lg} {
     flex-direction: row;
     justify-content: space-between;
   }
@@ -21,16 +21,17 @@ const GridItem = styled.li`
   min-width: ${props=>props.minWidth}px;
   margin-bottom: 32px;
 
-  ${theme.media.md} {
+  ${theme.media.lg} {
     width: ${props => `calc(${100 / props.cols}% - 20px)`};
     margin-bottom: 0;
   }
 `
-const ContentGrid = ({ cols, children, scrollable, minWidth, verticalOnMobile = true }) => {
+const ContentGrid = ({ cols, children, scrollable, minWidth, verticalOnMobile = true, gridStyles }) => {
   return (
     <Grid
       verticalOnMobile={verticalOnMobile}
       scrollable={scrollable}
+      style={gridStyles}
     >
       {children.map(item => (
         <GridItem key={uniqueId("col")}

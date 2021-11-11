@@ -9,13 +9,14 @@ import { useWindowSize } from "../../../hooks/useWindowSize"
 const TitledSection = ({ title, id, children, seeMoreLink, fullWidth = false }) => {
   const seeMoreText = useDictionary("seeMore")
   const { width } = useWindowSize()
+
   return (
     <SectionWrapper
       id={id}
       fullWidth={fullWidth}
     >
       {
-        width < theme.breakpoints.md ?
+        width < theme.breakpoints.lg ?
           <ContainerBox>
             <SectionTitle>{title}</SectionTitle>
           </ContainerBox> :
@@ -46,9 +47,8 @@ const SectionWrapper = styled(ContainerBox)`
   padding-top: 36px;
   padding-bottom: 36px;
 
-  ${theme.media.md} {
+  ${theme.media.lg} {
     flex-direction: row;
-
     padding-top: 48px;
     padding-bottom: 48px;
 
@@ -114,7 +114,7 @@ const SectionContent = styled(ContainerBox)`
     text-decoration: none;
   }
 
-  ${theme.media.md} {
+  ${theme.media.lg} {
     padding-top: ${theme.space.xl}px;
     max-width: 872px;
     width: 75%;

@@ -62,7 +62,11 @@ const StyledMenuBtn = styled.button`
 
 const MenuBtn = ({isOpen, onClick }) => {
     return (
-        <StyledMenuBtn className={isOpen ? 'active' : ''} onClick={onClick}>
+        <StyledMenuBtn
+          className={isOpen ? 'active' : ''}
+          onClick={onClick}
+          aria-label={'menu'}
+        >
             <span />
         </StyledMenuBtn>
     )
