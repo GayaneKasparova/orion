@@ -10,6 +10,25 @@ import NotoSansAmRegular from './../assets/Fonts/NotoSansArmenian-Regular.ttf'
 import NotoSansAmSemiBold from './../assets/Fonts/NotoSansArmenian-SemiBold.ttf'
 import NotoSansAmThin from './../assets/Fonts/NotoSansArmenian-Thin.ttf'
 
+export const StyledBtn = css`
+  padding: 8px 14px;
+  border-radius: 12px;
+
+  background-color: ${theme.colors.neonBlue};
+
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  font-style: normal;
+
+  color: white;
+  
+
+  ${theme.media.md} {
+    padding: 12px 18px;
+  }
+`
+
 export const GlobalStyles = createGlobalStyle`
 
   @font-face {
@@ -139,25 +158,48 @@ export const GlobalStyles = createGlobalStyle`
   .shadow-section {
     box-shadow: 0 0px 42px 4px #5a5a5a1c;
   }
-`
+  
+  .btn-gradient {
+    ${StyledBtn};
+    background: linear-gradient(to right,  ${theme.colors.pink},  ${theme.colors.purple});
+    background-size: 150% 150%;
+    background-position: 99% 50%;
 
-export const StyledBtn = css`
-  min-height: 48px;
-  padding: 12px 32px;
-  border-radius: 10px;
+    height: 100vh;
+    transition: all ease .3s;
+    &:hover {
+      background-position: 0% 40%;
 
-  background-color: ${theme.colors.neonBlue};
-
-  font-size: 16px;
-  text-decoration: none;
-  font-style: normal;
-  font-weight: ${theme.fontWeights.bold};
-
-  color: white;
-
-  ${theme.media.md} {
-    height: 56px;
-    padding: 16px 56px;
-    font-size: 20px;
+    }
   }
 `
+
+export const GradientBorder = css`
+  position: relative;
+  padding: 3px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    bottom: -3px;
+    left: -3px;
+    background-image: linear-gradient(to right, ${theme.colors.neonBlue} 15%, ${theme.colors.pink} 100%);
+    transition: transform .7s ease;
+  }
+
+  &:hover {
+    ${props => props.scale && `transform: scale(1.1);
+`}
+    box-shadow: 0 0 10px ${theme.colors.neonBlue};
+    &::before {
+      transform:  rotate(320deg);
+    }
+  }
+`
+

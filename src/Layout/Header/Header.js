@@ -89,7 +89,7 @@ const StyledHeader = styled.header`
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   padding-bottom: 15px;
+   padding-bottom: 46px;
  }
   
 

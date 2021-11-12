@@ -28,6 +28,7 @@ const BannerBlock = ({
 
 const Banner = styled.div`
 {
+  height: calc(100vh - 91px);
   padding: 30px 0;
   display: flex;
   min-height: 300px;
@@ -41,7 +42,6 @@ const Banner = styled.div`
   ${theme.media.md} {
     padding: ${theme.space.xl}px 0;
     text-align: left;
-    height: calc(100vh - 90px);
   }
 
   ${theme.media.lg} {

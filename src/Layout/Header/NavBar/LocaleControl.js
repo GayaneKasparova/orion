@@ -2,6 +2,9 @@ import React, { useCallback, useContext, useEffect, useRef, useState } from "rea
 import { Link } from "gatsby"
 import { LocaleDispatchContext, LocaleStateContext } from "../../../context/LocaleContextProvider"
 import { supportedLanguages, locales, defaultLocale } from "../../../suportedLocales"
+import styled from "styled-components"
+import { theme } from "../../../styles/theme"
+import { GradientBorder } from "../../../styles/globalStyles"
 
 const LocaleControl = () => {
   const [firstVisit, setFirstVisit] = useState(true)
@@ -22,7 +25,7 @@ const LocaleControl = () => {
   const pathName = window.location.pathname
   const pathLocaleName = pathName.split("/")[1]
 
-  const getTargetPath = useCallback( (targetLocale) => {
+  const getTargetPath = useCallback((targetLocale) => {
     if (!pathName.split("/")[2] && targetLocale === defaultLocale) {
       return "/"
     } else {
@@ -52,34 +55,26 @@ const LocaleControl = () => {
     setLocale(newLocale)
   }
 
+
   return (
     <div ref={innerRef}
     >
-      <div
-        onClick={() => toggleHandler}
-        onKeyDown={() => toggleHandler}
-        role="button"
-        tabIndex="0"
-      >
-        <span>{supportedLanguages.find(langItem => langItem.locale === locale).lang}</span>
-      </div>
-
-      <ul>
+      <LocaleList>
         {
           supportedLanguages
-            .filter(langItem => langItem.locale !== locale)
             .map(langItem => (
-              <li key={langItem.locale}>
+              <LangItem key={langItem.locale} active={langItem.locale === locale} scale={`${langItem.locale !== locale}`}>
                 <Link
                   to={getTargetPath(langItem.locale)}
                   onClick={() => handleLocaleChange(langItem.locale)}
+                  title={langItem.lang}
                 >
-                  {langItem.lang}
+                  <Flag> {langItem.code}</Flag>
                 </Link>
-              </li>
+              </LangItem>
             ))
         }
-      </ul>
+      </LocaleList>
     </div>
   )
 
@@ -105,4 +100,35 @@ const LocaleControl = () => {
   }
 }
 
+
+const LocaleList = styled.ul`
+  display: flex;
+`
+
+const LangItem = styled.li`
+  ${GradientBorder};
+  padding: 1px;
+  border: 1px;
+  margin-right: 6px;
+
+
+  ${props => props.active && `
+    padding: 2px;
+    border: 2px;
+    margin-right: 4px;
+  `
+  }
+`
+
+const Flag = styled.div`
+  position: relative;
+  background-color: ${theme.colors.black};
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  font-size: 18px;
+  text-align: center;
+  margin-right: 10px;
+  transition: transform .3s ease;
+`
 export default LocaleControl

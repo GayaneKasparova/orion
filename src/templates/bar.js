@@ -2,20 +2,20 @@ import React from "react"
 import { graphql } from "gatsby"
 import FacilityTemplate from "../components/common/FacilityTemplate"
 
-const SportsClub = ({
-                      data: {
-                        sportsClub
-                      }
-                    }) => {
+const Bar = ({
+               data: {
+                 bar
+               }
+             }) => {
 
   return (
-    <FacilityTemplate {...sportsClub}/>
+    <FacilityTemplate {...bar} />
   )
 }
 
 export const query = graphql`
-    query SportsClubPage($locale: String!){
-        sportsClub: datoCmsSportsClub (locale: {eq: $locale}) {
+    query BarPage($locale: String!){
+        bar: datoCmsBar (locale: {eq: $locale}) {
             seoSettings {
                 title
                 description
@@ -36,4 +36,4 @@ export const query = graphql`
     }`
 
 
-export default SportsClub
+export default Bar

@@ -1,9 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
 import { graphql } from "gatsby"
 import Seo from "../components/Seo"
 import Banner from "../components/Banner/Banner"
 import Team from "../components/Team/Team"
 import Contacts from "../components/Contacts/Contacts"
+import TitledSection from "../components/common/TitledSection/TitledSection"
+import { LocaleStateContext } from "../context/LocaleContextProvider"
+import Card from "../components/common/Card"
 
 const IndexPage = ({
                      data: {
@@ -14,14 +17,18 @@ const IndexPage = ({
                          bannerSubtitle,
                          bannerBtnText,
                          bannerBtnLink,
+                         facilitiesTitle,
+                         facilities,
                          teamTitle,
                          team
                        }
                      }
                    }) => {
 
+  const { locale } = useContext(LocaleStateContext)
+
   return (
-    <div id={'home'}>
+    <div id={"home"}>
       <Seo {...seoSettings} />
       <Banner
         bgImage={bannerBackgroundImage}
@@ -30,13 +37,29 @@ const IndexPage = ({
         bannerBtnText={bannerBtnText}
         bannerBtnLink={bannerBtnLink}
       />
+      <TitledSection
+        title={facilitiesTitle}
+        id={'facilities'}
+      >
+        {facilities.map((facility, index) => (
+            <Card
+              key={facility.id}
+              title={facility.title}
+              description={facility.description}
+              cover={facility.cover}
+              link={`/${locale}/${facility.slug}`}
+              reverse={(index + 1) % 2 === 0 ? 'true' : 'false'}
+            />
+          ))}
+      </TitledSection>
+
 
       <Team
         teamTitle={teamTitle}
         team={team}
       />
 
-      <Contacts/>
+      <Contacts />
 
     </div>
   )
@@ -63,6 +86,55 @@ export const query = graphql`
             bannerBtnText
             bannerBtnLink
 
+            facilitiesTitle
+            facilities {
+                ... on DatoCmsSportsClub {
+                    id
+                    title
+                    cover {
+                        gatsbyImageData(aspectRatio: 1.7)
+                    }
+                    description
+                    slug
+                }
+                ... on DatoCmsBoxingSalon {
+                    id
+                    title
+                    cover {
+                        gatsbyImageData(aspectRatio: 1.7)
+                    }
+                    description
+                    slug
+                }
+                ... on DatoCmsYogaStudio {
+                    id
+                    title
+                    cover {
+                        gatsbyImageData(aspectRatio: 1.7)
+                    }
+                    description
+                    slug
+                }
+                ... on DatoCmsBar {
+                    id
+                    title
+                    cover {
+                        gatsbyImageData(aspectRatio: 1.7)
+                    }
+                    description
+                    slug
+                }
+                ... on DatoCmsMeetingRoom {
+                    id
+                    title
+                    cover {
+                        gatsbyImageData(aspectRatio: 1.7)
+                    }
+                    description
+                    slug
+                }
+
+            }
             teamTitle
             team {
                 id

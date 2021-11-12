@@ -55,6 +55,30 @@ exports.createPages = async ({ graphql, actions }) => {
       context: { locale: locale }
     })
 
+    createPage({
+      path: urls.boxingSalonUrl(locale),
+      component: path.resolve("src/templates/boxingSalon.js"),
+      context: { locale: locale }
+    })
+
+    createPage({
+      path: urls.yogaStudioUrl(locale),
+      component: path.resolve("src/templates/yogaStudio.js"),
+      context: { locale: locale }
+    })
+
+    createPage({
+      path: urls.barUrl(locale),
+      component: path.resolve("src/templates/bar.js"),
+      context: { locale: locale }
+    })
+
+    createPage({
+      path: urls.meetingRoomUrl(locale),
+      component: path.resolve("src/templates/meetingRoom.js"),
+      context: { locale: locale }
+    })
+
 
     // Article pages
     articles.nodes.forEach((article) => {

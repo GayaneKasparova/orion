@@ -27,7 +27,7 @@ const TitledSection = ({ title, id, children, seeMoreLink, fullWidth = false }) 
 
       <SectionContent fullWidth={fullWidth}>
         {children}
-        {seeMoreLink && <SeeMore link={seeMoreLink} text={seeMoreText} />}
+        {!!seeMoreLink && <SeeMore to={seeMoreLink}>{seeMoreText}</SeeMore>}
       </SectionContent>
     </SectionWrapper>
   )
@@ -72,7 +72,6 @@ const SectionWrapper = styled(ContainerBox)`
   }
 `
 const SeeMore = styled(Link)`
-
 `
 const SectionTitle = styled.h2`
   position: relative;
@@ -115,7 +114,6 @@ const SectionContent = styled(ContainerBox)`
   }
 
   ${theme.media.lg} {
-    padding-top: ${theme.space.xl}px;
     max-width: 872px;
     width: 75%;
   }

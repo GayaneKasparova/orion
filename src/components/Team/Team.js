@@ -21,7 +21,7 @@ const Team = ({ team, teamTitle }) => {
         verticalOnMobile={false}
         scrollable={true}
         minWidth={120}
-        gridStyles={{maxWidth: '100%', margin: 'auto'}}
+        gridStyles={{maxWidth: '100%', margin: 'auto', paddingTop: 10}}
       >
         {
           team.map(member => <PersonIcon {...member} key={member.id} />)
