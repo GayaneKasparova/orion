@@ -21,10 +21,12 @@ module.exports = {
         background_color: `#f7f0eb`,
         theme_color: `#00bfdf`,
         display: `standalone`,
+        lang: `hy`,
+        icon: `src/assets/images/logo.png`,
         localize: [
           {
-            start_url: `/hy/`,
-            lang: `hy`,
+            start_url: `/en/`,
+            lang: `en`,
             name: `Orion Sports Club`,
             short_name: `OrionClub`
           },
