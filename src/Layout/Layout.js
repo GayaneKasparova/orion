@@ -8,7 +8,7 @@ const Layout = ({children, pageContext}) => {
 		<div>
 			<GlobalStyles/>
 			<Header/>
-			<main style={{marginTop: 90}}>{children}</main>
+			<main style={{marginTop: 76}}>{children}</main>
 			<Footer/>
 		</div>
 	)

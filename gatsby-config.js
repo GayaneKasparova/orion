@@ -2,28 +2,58 @@ require("dotenv").config()
 //const {styles} = require("./src/components/Map/styles")
 
 module.exports = {
-    siteMetadata: {
-        site: 'Orion Club',
-        title: process.env.PROJECT_NAME,
-        description: 'Orion Club web app',
-        siteUrl: process.env.SITE_URL,
-        language: 'hy',
-        color: '#00bfdf',
-        author: 'Gayane Kasparova',
+  siteMetadata: {
+    site: "Orion Club",
+    title: process.env.PROJECT_NAME,
+    description: "Orion Club web app",
+    siteUrl: process.env.SITE_URL,
+    language: "hy",
+    color: "#00bfdf",
+    author: "Gayane Kasparova"
+  },
+  plugins: [
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Orion Sports Club`,
+        short_name: `OrionClub`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#00bfdf`,
+        display: `standalone`,
+        localize: [
+          {
+            start_url: `/hy/`,
+            lang: `hy`,
+            name: `Orion Sports Club`,
+            short_name: `OrionClub`
+          },
+          {
+            start_url: `/ru/`,
+            lang: `ru`,
+            name: `Orion Sports Club`,
+            short_name: `OrionClub`
+          }
+        ]
+      }
     },
-    plugins: [
-        `gatsby-plugin-react-helmet`,
-        `gatsby-plugin-styled-components`,
-        `gatsby-transformer-remark`,
-        `gatsby-plugin-image`,
-        `gatsby-plugin-sharp`,
-        `gatsby-transformer-sharp`,
-        `gatsby-plugin-anchor-links`,
-        {
-            resolve: `gatsby-source-datocms`,
-            options: {
-                apiToken: process.env.DATO_API_TOKEN,
-            },
-        },
-    ],
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-transformer-remark`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: "gatsby-plugin-anchor-links",
+      options: {
+        offset: -86
+      }
+    },
+    {
+      resolve: `gatsby-source-datocms`,
+      options: {
+        apiToken: process.env.DATO_API_TOKEN
+      }
+    }
+  ]
 }

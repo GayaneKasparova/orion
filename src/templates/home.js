@@ -92,7 +92,7 @@ export const query = graphql`
                     id
                     title
                     cover {
-                        gatsbyImageData(aspectRatio: 1.7)
+                        gatsbyImageData(aspectRatio: 1.9)
                     }
                     description
                     slug
@@ -101,7 +101,7 @@ export const query = graphql`
                     id
                     title
                     cover {
-                        gatsbyImageData(aspectRatio: 1.7)
+                        gatsbyImageData(aspectRatio: 1.9)
                     }
                     description
                     slug
@@ -110,7 +110,7 @@ export const query = graphql`
                     id
                     title
                     cover {
-                        gatsbyImageData(aspectRatio: 1.7)
+                        gatsbyImageData(aspectRatio: 1.9)
                     }
                     description
                     slug
@@ -119,7 +119,7 @@ export const query = graphql`
                     id
                     title
                     cover {
-                        gatsbyImageData(aspectRatio: 1.7)
+                        gatsbyImageData(aspectRatio: 1.9)
                     }
                     description
                     slug
@@ -128,7 +128,7 @@ export const query = graphql`
                     id
                     title
                     cover {
-                        gatsbyImageData(aspectRatio: 1.7)
+                        gatsbyImageData(aspectRatio: 1.9)
                     }
                     description
                     slug

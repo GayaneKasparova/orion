@@ -65,7 +65,7 @@ const Header = () => {
           <Navbar
             navItems={navItems}
             className={"mobileMenu"}
-            onClick={() => closeMenu} />
+            onClick={() => closeMenu()} />
           <LocaleControl />
 
         </ContainerBox>
@@ -85,18 +85,16 @@ const StyledHeader = styled.header`
   border-bottom: 1px solid ${theme.colors.neonBlue};
   box-shadow: 0 1px 6px 0 ${theme.colors.neonBlue};
  .open {
-   min-height: calc(100vh - 91px);
+   min-height: calc(100vh - 77px);
    display: flex;
    flex-direction: column;
    justify-content: space-between;
    padding-bottom: 46px;
  }
-  
-
 `
 
 const HeaderContainerBox = styled(ContainerBox)`
-  min-height: 90px;
+  min-height: 71px;
   display: flex;
   justify-content: space-between;
   align-items: center;

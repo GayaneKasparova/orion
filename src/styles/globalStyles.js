@@ -11,7 +11,7 @@ import NotoSansAmSemiBold from './../assets/Fonts/NotoSansArmenian-SemiBold.ttf'
 import NotoSansAmThin from './../assets/Fonts/NotoSansArmenian-Thin.ttf'
 
 export const StyledBtn = css`
-  padding: 8px 14px;
+  padding: 15px 30px;
   border-radius: 12px;
 
   background-color: ${theme.colors.neonBlue};
@@ -22,11 +22,6 @@ export const StyledBtn = css`
   font-style: normal;
 
   color: white;
-  
-
-  ${theme.media.md} {
-    padding: 12px 18px;
-  }
 `
 
 export const GlobalStyles = createGlobalStyle`
@@ -165,7 +160,6 @@ export const GlobalStyles = createGlobalStyle`
     background-size: 150% 150%;
     background-position: 99% 50%;
 
-    height: 100vh;
     transition: all ease .3s;
     &:hover {
       background-position: 0% 40%;

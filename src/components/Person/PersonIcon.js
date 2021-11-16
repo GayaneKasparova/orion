@@ -31,7 +31,7 @@ const Photo = styled(GatsbyImage)`
 
 const Name = styled.h4`
   width: 80%;
-  margin: auto;
+  margin:  auto;
   text-align: center;
 `
 
