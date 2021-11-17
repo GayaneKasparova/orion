@@ -98,13 +98,6 @@ export const GlobalStyles = createGlobalStyle`
     word-break: break-word;
     background-color: ${theme.colors.darkGrey};
     color: ${theme.colors.white};
-    main {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
   }
 
   a {
