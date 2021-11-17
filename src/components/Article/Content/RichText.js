@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import {theme} from "../../../styles/theme";
 
-const RichText = ({ data: { title, body } } ) => {
+const RichText = ({ data: { title, body }, style } ) => {
     return (
-        <div>
+        <div style={style}>
             {title && <RichTextHeading>{title}</RichTextHeading>}
             <RichTextBody dangerouslySetInnerHTML={{__html: body ?? '' }}/>
         </div>

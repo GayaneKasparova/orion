@@ -53,8 +53,12 @@ const Banner = styled.div`
   }
 
   .opacity-block {
+    min-height: 40vh;
     padding-bottom: 4px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     &::before {
       top: -16px;
       right: -16px;
@@ -76,7 +80,7 @@ const Banner = styled.div`
 const BannerTitle = styled.h1` {
   display: block;
 
-  font-size: 18px;
+  font-size: 24px;
   line-height: 120%;
   letter-spacing: 0.07em;
   font-weight: 600;
@@ -84,13 +88,13 @@ const BannerTitle = styled.h1` {
   color: ${theme.colors.red};
 
   ${theme.media.sm} {
-    font-size: 22px;
+    font-size: 28px;
   }
 
   ${theme.media.md} {
     max-width: 484px;
     max-height: 114px;
-    font-size: 32px;
+    font-size: 34px;
   }
 }`
 
@@ -99,7 +103,7 @@ const BannerText = styled.p` {
   margin: 24px 0;
   max-width: 600px;
 
-  font-size: 24px;
+  font-size: 28px;
   font-style: normal;
   font-weight: ${theme.fontWeights.medium};
 
@@ -108,6 +112,11 @@ const BannerText = styled.p` {
   ${theme.media.md} {
     font-size: 44px;
     max-height: 180px;
+  }
+  
+  ${theme.media.lg} {
+    font-size: 52px;
+    max-height: 200px;
   }
 
 }`

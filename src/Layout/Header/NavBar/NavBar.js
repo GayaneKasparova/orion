@@ -4,15 +4,15 @@ import {AnchorLink} from "gatsby-plugin-anchor-links";
 import styled from "styled-components";
 import {theme} from "../../../styles/theme";
 
-const NavBar = ({navItems, className, onClick}) => {
+const NavBar = ({navItems, className, clickHandler}) => {
 
     return (
         <StyledNav className={className}>
             <ul>
                 {
                   navItems.map(navItem => (
-                        <li key={navItem.id} onClick={() => onClick()} role={"button"}>
-                          {navItem.url ? <AnchorLink to={navItem.url} title={navItem.title}/> : <span>{navItem.title}</span>}
+                        <li key={navItem.id}>
+                          {navItem.url ? <AnchorLink to={navItem.url} title={navItem.title} onAnchorLinkClick={clickHandler}/> : <span>{navItem.title}</span>}
 
                             {
                               navItem.treeChildren.length > 0 && <SubMenu subMenuItems={navItem.treeChildren}/>
@@ -31,19 +31,24 @@ const StyledNav = styled.nav`
 
   &.mobileMenu {
     ul {
+      margin-top: ${theme.space.l}px;
       display: flex;
+      min-width: 80%;
       flex-direction: column;
       align-items: flex-start;
 
       li {
         padding-left: 0;
+        width: 100%;
 
         &::after {
           left: 0;
         }
 
         a {
+          width: 100%;
           padding: 16px 0 8px;
+          text-align: center;
         }
       }
     }

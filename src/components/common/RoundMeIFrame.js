@@ -17,7 +17,7 @@ const RoundMeIFrame = ({link, title}) => {
 
 const StyledIFrame = styled.iframe`
   width: 100%;
-  max-height: calc(100vh - 120px);
+  max-height: 65vh;
 `
 
 export default RoundMeIFrame

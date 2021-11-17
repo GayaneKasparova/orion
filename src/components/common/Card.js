@@ -33,7 +33,7 @@ const CardWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: ${theme.space.s}px;
+  margin: ${theme.space.s}px auto;
   border: 1px solid ${theme.colors.grey};
   padding: 16px 20px 40px;
   border-radius: 16px;

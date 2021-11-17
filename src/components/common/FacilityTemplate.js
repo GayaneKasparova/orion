@@ -6,6 +6,7 @@ import styled from "styled-components"
 import { theme } from "../../styles/theme"
 import { GatsbyImage } from "gatsby-plugin-image"
 import RichText from "../Article/Content/RichText"
+import { useWindowSize } from "../../hooks/useWindowSize"
 
 const FacilityTemplate = ({
                             seoSettings,
@@ -15,6 +16,8 @@ const FacilityTemplate = ({
                             content
                           }) => {
 
+  const { width } = useWindowSize()
+
   return (
     <div>
       <Seo {...seoSettings} />
@@ -22,11 +25,12 @@ const FacilityTemplate = ({
 
       <StyledContainerBox>
         <StyledHeadline>{title}</StyledHeadline>
-        <RichText data={{ body: content }} />
 
-        {roundmeLink && <RoundMeIFrame title={title} link={roundmeLink} />}
-
+        <RichText data={{ body: content }} style={{ marginTop: theme.space.m, marginBottom: theme.space.l }}/>
+        { width > theme.breakpoints.lg && roundmeLink && <RoundMeIFrame title={title} link={roundmeLink}/> }
       </StyledContainerBox>
+
+      { width <= theme.breakpoints.lg && roundmeLink && <RoundMeIFrame title={title} link={roundmeLink}/> }
 
     </div>
   )

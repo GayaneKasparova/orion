@@ -61,14 +61,14 @@ const Header = () => {
 
       {
         width <= 991 && menuIsOpen &&
-        <ContainerBox className={'open'}>
+        <div className={'open'}>
           <Navbar
             navItems={navItems}
             className={"mobileMenu"}
-            onClick={() => closeMenu()} />
+            clickHandler={() => closeMenu()} />
           <LocaleControl />
 
-        </ContainerBox>
+        </div>
       }
 
     </StyledHeader>
@@ -90,6 +90,7 @@ const StyledHeader = styled.header`
    flex-direction: column;
    justify-content: space-between;
    padding-bottom: 46px;
+   border-top: 1px solid #666666;
  }
 `
 

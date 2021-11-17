@@ -102,21 +102,29 @@ const LocaleControl = () => {
 
 
 const LocaleList = styled.ul`
+  width: 160px;
   display: flex;
+  margin: 24px auto;
+  ${theme.media.lg} {
+    width: unset;
+    margin: unset;
+  }
 `
 
 const LangItem = styled.li`
   ${GradientBorder};
   padding: 1px;
   border: 1px;
-  margin-right: 6px;
-
+  margin-right: 16px;
 
   ${props => props.active && `
     padding: 2px;
     border: 2px;
-    margin-right: 4px;
   `
+  }
+
+  ${theme.media.lg} {
+    margin-right: 10px;
   }
 `
 
@@ -126,9 +134,13 @@ const Flag = styled.div`
   height: 100%;
   width: 100%;
   border-radius: 50%;
-  font-size: 18px;
+  font-size: 26px;
   text-align: center;
   margin-right: 10px;
   transition: transform .3s ease;
+  
+  ${theme.media.lg} {
+    font-size: 20px;
+  }
 `
 export default LocaleControl
