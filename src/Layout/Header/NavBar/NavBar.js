@@ -4,18 +4,18 @@ import {AnchorLink} from "gatsby-plugin-anchor-links";
 import styled from "styled-components";
 import {theme} from "../../../styles/theme";
 
-const NavBar = ({links, className, onClick}) => {
+const NavBar = ({navItems, className, clickHandler}) => {
 
     return (
         <StyledNav className={className}>
             <ul>
                 {
-                    links.map(link => (
-                        <li key={link.id}>
+                  navItems.map(navItem => (
+                        <li key={navItem.id}>
+                          {navItem.url ? <AnchorLink to={navItem.url} title={navItem.title} onAnchorLinkClick={clickHandler}/> : <span>{navItem.title}</span>}
 
-                            <AnchorLink to={link.url} title={link.title} onClick={onClick}/>
                             {
-                                link.treeChildren.length > 0 && <SubMenu subMenuItems={link.treeChildren}/>
+                              navItem.treeChildren.length > 0 && <SubMenu subMenuItems={navItem.treeChildren}/>
                             }
                         </li>
                     ))
@@ -30,23 +30,25 @@ const StyledNav = styled.nav`
   transition: min-height .3s ease .5s;
 
   &.mobileMenu {
-    min-height: calc(100vh - 90px);
-
     ul {
+      margin-top: ${theme.space.l}px;
       display: flex;
+      min-width: 80%;
       flex-direction: column;
       align-items: flex-start;
 
       li {
         padding-left: 0;
+        width: 100%;
 
         &::after {
           left: 0;
         }
 
         a {
+          width: 100%;
           padding: 16px 0 8px;
-
+          text-align: center;
         }
       }
     }
@@ -57,22 +59,29 @@ const StyledNav = styled.nav`
     display: inline-block;
     padding: 0 8px;
     list-style: none;
+    ${theme.media.lg} {
 
-    &::after {
-      content: "";
-
-      position: absolute;
-      left: 16px;
-      width: 0;
-      bottom: 0;
-      height: 2px;
-      transition: width .3s ease;
-      background-color: ${theme.colors.neonBlue};
-    }
-
-    &:hover {
       &::after {
-        width: calc(100% - 32px);
+        content: "";
+
+        position: absolute;
+        left: 16px;
+        width: 0;
+        bottom: 2px;
+        height: 3px;
+        background-image: linear-gradient(45deg, ${theme.colors.neonBlue}, ${theme.colors.purple});
+        border-radius: 1px;
+        transition: width .35s ease;
+
+        ${theme.media.lg} {
+          bottom: 16px;
+        }
+      }
+
+      &:hover {
+        &::after {
+          width: calc(100% - 32px);
+        }
       }
     }
   }
@@ -80,13 +89,12 @@ const StyledNav = styled.nav`
   a {
     display: inline-block;
     padding: 32px 8px;
-
     font-size: ${theme.fontSizes.m};
-    font-weight: ${theme.fontWeights.semibold};
+    font-weight: ${theme.fontWeights.medium};
     line-height: 27px;
     font-style: ${theme.fontWeights.regular};
+    letter-spacing: 1.3px;
     text-decoration: none;
-
     ${theme.media.xl} {
       font-size: ${theme.fontSizes.l};
     }

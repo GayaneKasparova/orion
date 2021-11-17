@@ -4,7 +4,7 @@ import {graphql} from 'gatsby'
 
 const VideoUpload = ({videoData: {videoFile}}) => {
     return (
-        <video width="100%" height="500" controls={true}>
+        <video width="100%" height="500" controls={true} crossorigin={'true'}>
             <source src={`${videoFile?.url}`} type={`video/${videoFile?.format}`}/>
             {videoFile?.alt || ` Your browser does not support the video tag.`}
         </video>

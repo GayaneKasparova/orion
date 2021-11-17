@@ -2,8 +2,12 @@ import React, { useCallback, useContext, useEffect, useRef, useState } from "rea
 import { Link } from "gatsby"
 import { LocaleDispatchContext, LocaleStateContext } from "../../../context/LocaleContextProvider"
 import { supportedLanguages, locales, defaultLocale } from "../../../suportedLocales"
+import styled from "styled-components"
+import { theme } from "../../../styles/theme"
+import { GradientBorder } from "../../../styles/globalStyles"
 
 const LocaleControl = () => {
+  const [firstVisit, setFirstVisit] = useState(true)
   const { locale } = useContext(LocaleStateContext)
   const dispatch = useContext(LocaleDispatchContext)
 
@@ -21,49 +25,56 @@ const LocaleControl = () => {
   const pathName = window.location.pathname
   const pathLocaleName = pathName.split("/")[1]
 
-  useEffect(() => {
-    setLocale(locales.includes(pathLocaleName) ? pathLocaleName : defaultLocale)
-  }, [setLocale, pathLocaleName])
-
-  const getTargetPath = (targetLocale) => {
-    if (!pathName.split("/")[2] && targetLocale === defaultLocale ) {
-      return '/'
+  const getTargetPath = useCallback((targetLocale) => {
+    if (!pathName.split("/")[2] && targetLocale === defaultLocale) {
+      return "/"
     } else {
       const pathNameStart = pathName.slice(0, pathName.indexOf(`${pathLocaleName}`))
       const pathNameEnd = pathName.slice(pathName.indexOf(`${pathLocaleName}`) + 2, pathName.length)
 
       return pathNameStart + targetLocale + pathNameEnd
     }
+  }, [pathName, pathLocaleName])
+
+
+  useEffect(() => {
+    if (!pathLocaleName && firstVisit) {
+      const targetLocale = window.navigator?.language.slice(0, 2) || defaultLocale
+      setLocale(targetLocale)
+      window.location.replace(getTargetPath(targetLocale))
+    } else {
+      setLocale(locales.includes(pathLocaleName) ? pathLocaleName : defaultLocale)
+    }
+  }, [setLocale, pathLocaleName, firstVisit, getTargetPath])
+
+
+  const handleLocaleChange = (newLocale) => {
+    if (firstVisit) {
+      setFirstVisit(false)
+    }
+    setLocale(newLocale)
   }
+
 
   return (
     <div ref={innerRef}
     >
-      <div
-        onClick={() => toggleHandler}
-        onKeyDown={() => toggleHandler}
-        role="button"
-        tabIndex="0"
-      >
-        <span>{supportedLanguages.find(langItem => langItem.locale === locale).lang}</span>
-      </div>
-
-      <ul>
+      <LocaleList>
         {
           supportedLanguages
-            .filter(langItem => langItem.locale !== locale)
             .map(langItem => (
-              <li key={langItem.locale}>
+              <LangItem key={langItem.locale} active={langItem.locale === locale} scale={`${langItem.locale !== locale}`}>
                 <Link
                   to={getTargetPath(langItem.locale)}
-                  onClick={() => setLocale(langItem.locale)}
+                  onClick={() => handleLocaleChange(langItem.locale)}
+                  title={langItem.lang}
                 >
-                  {langItem.lang}
+                  <Flag> {langItem.code}</Flag>
                 </Link>
-              </li>
+              </LangItem>
             ))
         }
-      </ul>
+      </LocaleList>
     </div>
   )
 
@@ -89,4 +100,47 @@ const LocaleControl = () => {
   }
 }
 
+
+const LocaleList = styled.ul`
+  width: 160px;
+  display: flex;
+  margin: 24px auto;
+  ${theme.media.lg} {
+    width: unset;
+    margin: unset;
+  }
+`
+
+const LangItem = styled.li`
+  ${GradientBorder};
+  padding: 1px;
+  border: 1px;
+  margin-right: 16px;
+
+  ${props => props.active && `
+    padding: 2px;
+    border: 2px;
+  `
+  }
+
+  ${theme.media.lg} {
+    margin-right: 10px;
+  }
+`
+
+const Flag = styled.div`
+  position: relative;
+  background-color: ${theme.colors.black};
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  font-size: 26px;
+  text-align: center;
+  margin-right: 10px;
+  transition: transform .3s ease;
+  
+  ${theme.media.lg} {
+    font-size: 20px;
+  }
+`
 export default LocaleControl

@@ -26,10 +26,6 @@ const VideoExternal = ({
         }
     }
 
-    console.log(provider)
-    console.log(providerUid)
-    console.log(url)
-
     return (
         <iframe src={`${generateSrc(provider)}${providerUid}`}
                 title={title}

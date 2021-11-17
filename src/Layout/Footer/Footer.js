@@ -5,23 +5,24 @@ import useNavLinks from "../../hooks/use-nav-links"
 import {Link} from "gatsby";
 //import {StaticImage} from "gatsby-plugin-image";
 import {theme} from "../../styles/theme";
+import { StaticImage } from "gatsby-plugin-image"
 
 
 const Footer = () => {
-    const links = useNavLinks();
+    const links = useNavLinks('footer');
 
     return (
         <StyledFooter>
             <FooterContainerBox>
                 <LogoWrapper to={'/'}>
-                    {/*<StaticImage
-                        src={"../../images/WhiteLogo.svg"}
+                    <StaticImage
+                        src={"../../assets/images/logo.png"}
                         alt={'Logo'}
                         layout="fixed"
-                        width={42}
-                        height={54}
+                        width={70}
+                        height={70}
                         style={{marginRight: 16}}
-                    />*/}
+                    />
                 </LogoWrapper>
 
                 <NavLinks>
@@ -42,7 +43,8 @@ const Footer = () => {
 
 
 const StyledFooter = styled.footer`
-  background-color: #16232C;
+  border-top: 1px solid ${theme.colors.purple};
+  box-shadow: 0 -1px 8px 0 ${theme.colors.purple};
 `
 
 const FooterContainerBox = styled(ContainerBox)`
@@ -74,10 +76,6 @@ const NavLinks = styled.div`
   padding-top: 40px;
   padding-bottom: 40px;
 `
-
-
-
-
 
 export default Footer
 

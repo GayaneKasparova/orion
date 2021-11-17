@@ -19,7 +19,7 @@ const StyledMenuBtn = styled.button`
     display: block;
     width: var(--line-width);
     height: var(--line-height);
-    background: ${theme.colors.blue};
+    background-image: linear-gradient(90deg, ${theme.colors.neonBlue} 0%, ${theme.colors.blue} 100%);
     border-radius: 2px;
   }
   span {
@@ -62,7 +62,11 @@ const StyledMenuBtn = styled.button`
 
 const MenuBtn = ({isOpen, onClick }) => {
     return (
-        <StyledMenuBtn className={isOpen ? 'active' : ''} onClick={onClick}>
+        <StyledMenuBtn
+          className={isOpen ? 'active' : ''}
+          onClick={onClick}
+          aria-label={'menu'}
+        >
             <span />
         </StyledMenuBtn>
     )

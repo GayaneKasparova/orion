@@ -11,6 +11,7 @@ const useDictionary = (key) => {
             dictionary: allDatoCmsDictionary {
                 nodes {
                     seeMore
+                    contacts
                     locale
                 }
             }

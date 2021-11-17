@@ -1,74 +1,70 @@
-import React from "react"
+import React, { useContext } from "react"
 import { graphql } from "gatsby"
 import Seo from "../components/Seo"
 import Banner from "../components/Banner/Banner"
-import styled from "styled-components"
-import { theme } from "../styles/theme"
+import Team from "../components/Team/Team"
+import Contacts from "../components/Contacts/Contacts"
+import TitledSection from "../components/common/TitledSection/TitledSection"
+import { LocaleStateContext } from "../context/LocaleContextProvider"
+import Card from "../components/common/Card"
 
-const IndexPage = (/*{
-                       data: {
-                           home: {
-                               seoSettings,
-                               bannerBackgroundImage,
-                               bannerTitle,
-                               bannerSubtitle,
-                               bannerBtnText,
-                               bannerBtnLink/!*,
-                               aboutUsTitle,
-                               aboutUsText,
-                               orionSportsClubTitle,
-                               orionSportsClubDescription,
-                               orionFightingClubTitle,
-                               orionFightingClubDescription*!/
-                           }
+const IndexPage = ({
+                     data: {
+                       home: {
+                         seoSettings,
+                         bannerBackgroundImage,
+                         bannerTitle,
+                         bannerSubtitle,
+                         bannerBtnText,
+                         bannerBtnLink,
+                         facilitiesTitle,
+                         facilities,
+                         teamTitle,
+                         team
                        }
-                   }*/) => {
-  return (
+                     }
+                   }) => {
 
-    /*<div>
-        <Seo {...seoSettings} />
-        <Banner
-          bgImage={bannerBackgroundImage}
-          title={bannerTitle}
-          subtitle={bannerSubtitle}
-          bannerBtnText={bannerBtnText}
-          bannerBtnLink={bannerBtnLink}
-        />
-    </div>*/
-    <HeadLine>
-      <GradientText>Tss</GradientText> 🤫
-      <br />
-      <GradientText>COMING SOON.....</GradientText>
-    </HeadLine>
+  const { locale } = useContext(LocaleStateContext)
+
+  return (
+    <div id={"home"}>
+      <Seo {...seoSettings} />
+      <Banner
+        bgImage={bannerBackgroundImage}
+        title={bannerTitle}
+        subtitle={bannerSubtitle}
+        bannerBtnText={bannerBtnText}
+        bannerBtnLink={bannerBtnLink}
+      />
+      <TitledSection
+        title={facilitiesTitle}
+        id={'facilities'}
+      >
+        {facilities.map((facility, index) => (
+            <Card
+              key={facility.id}
+              title={facility.title}
+              description={facility.description}
+              cover={facility.cover}
+              link={`/${locale}/${facility.slug}`}
+              reverse={(index + 1) % 2 === 0 ? 'true' : 'false'}
+            />
+          ))}
+      </TitledSection>
+
+
+      <Team
+        teamTitle={teamTitle}
+        team={team}
+      />
+
+      <Contacts />
+
+    </div>
   )
 }
 
-const HeadLine = styled.h1`
-  text-align: center;
-  font-size: 32px;
-  ${theme.media.sm} {
-    font-size: 46px;
-  }
-  ${theme.media.md} {
-    font-size: 52px;
-  }
-  ${theme.media.lg} {
-    font-size: 64px;
-  }
-  ${theme.media.xl} {
-    font-size: 72px;
-  }
-`
-const GradientText = styled.span`
-  display: inline-block;
-  background: #00BFDF;
-  background: -webkit-linear-gradient(to right, #00BFDF 0%, #9113D3 100%);
-  background: -moz-linear-gradient(to right, #00BFDF 0%, #9113D3 100%);
-  background: linear-gradient(to right, #00BFDF 0%, #9113D3 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-`
-/*
 export const query = graphql`
     query HomePage($locale: String!){
         home: datoCmsHomePage (locale: {eq: $locale}) {
@@ -90,17 +86,69 @@ export const query = graphql`
             bannerBtnText
             bannerBtnLink
 
-            aboutUsTitle
-            aboutUsText
+            facilitiesTitle
+            facilities {
+                ... on DatoCmsSportsClub {
+                    id
+                    title
+                    cover {
+                        gatsbyImageData(aspectRatio: 1.9)
+                    }
+                    description
+                    slug
+                }
+                ... on DatoCmsBoxingSalon {
+                    id
+                    title
+                    cover {
+                        gatsbyImageData(aspectRatio: 1.9)
+                    }
+                    description
+                    slug
+                }
+                ... on DatoCmsYogaStudio {
+                    id
+                    title
+                    cover {
+                        gatsbyImageData(aspectRatio: 1.9)
+                    }
+                    description
+                    slug
+                }
+                ... on DatoCmsBar {
+                    id
+                    title
+                    cover {
+                        gatsbyImageData(aspectRatio: 1.9)
+                    }
+                    description
+                    slug
+                }
+                ... on DatoCmsMeetingRoom {
+                    id
+                    title
+                    cover {
+                        gatsbyImageData(aspectRatio: 1.9)
+                    }
+                    description
+                    slug
+                }
 
-            orionSportsClubTitle
-            orionSportsClubDescription
-
-            orionFightingClubTitle
-            orionFightingClubDescription
-
+            }
+            teamTitle
+            team {
+                id
+                firstName
+                lastName
+                slug
+                photo {
+                    gatsbyImageData(aspectRatio: 1, imgixParams: {w: "200", h: "200", fit: "crop"})
+                }
+                title
+                bio
+            }
         }
-    }`*/
+    }`
 
 export default IndexPage
 

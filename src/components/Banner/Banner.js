@@ -1,45 +1,46 @@
-import React from "react";
+import React from "react"
 import styled from "styled-components"
-import {ContainerBox} from "../common/ContainerBox/ContainerBox";
-import {theme} from "../../styles/theme";
-import {AnchorLink} from "gatsby-plugin-anchor-links";
-import {StyledBtn} from "../../styles/globalStyles";
+import { ContainerBox } from "../common/ContainerBox/ContainerBox"
+import { theme } from "../../styles/theme"
+import { AnchorLink } from "gatsby-plugin-anchor-links"
+import { StyledBtn } from "../../styles/globalStyles"
 
 const BannerBlock = ({
-                         bgImage,
-                         title,
-                         subtitle,
-                         bannerBtnText,
-                         bannerBtnLink
+                       bgImage,
+                       title,
+                       subtitle,
+                       bannerBtnText,
+                       bannerBtnLink
                      }) => {
 
-    return (
-        <Banner bgImage={bgImage} onScroll={() => window.scrollTo({
-            top: '100vh',
-            behavior: 'smooth',
-        })}>
-            <ContainerBox className='opacity-block'>
-                <BannerTitle>{subtitle}</BannerTitle>
-                <BannerText>{title}</BannerText>
-                <BannerButton to={bannerBtnLink} title={bannerBtnText}/>
-            </ContainerBox>
-        </Banner>)
+  return (
+    <Banner bgImage={bgImage} onScroll={() => window.scrollTo({
+      top: "100vh",
+      behavior: "smooth"
+    })}>
+      <ContainerBox className="opacity-block">
+        <BannerTitle>{subtitle}</BannerTitle>
+        <BannerText>{title}</BannerText>
+        { bannerBtnLink && bannerBtnLink && <BannerButton to={bannerBtnLink} title={bannerBtnText} />}
+      </ContainerBox>
+    </Banner>)
 }
 
 const Banner = styled.div`
 {
+  height: calc(100vh - 91px);
   padding: 30px 0;
   display: flex;
+  min-height: 300px;
   align-items: center;
   background-image: url("${props => props?.bgImage?.url}");
   background-size: cover;
   background-position: center;
   text-align: center;
+  transition: transform .3s ease;
 
   ${theme.media.md} {
     padding: ${theme.space.xl}px 0;
-    text-align: left;
-    height: calc(100vh - 90px);
   }
 
   ${theme.media.lg} {
@@ -51,26 +52,24 @@ const Banner = styled.div`
   }
 
   .opacity-block {
+    min-height: 40vh;
     padding-bottom: 4px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     &::before {
       top: -16px;
-      right: -10px;
+      right: -16px;
       bottom: -16px;
-      left: -10px;
-
-      ${theme.media.md} {
-        top: -16px;
-        right: -10px;
-        bottom: -16px;
-        left: -10px;
-      }
+      left: -16px;
+      background: #1c1c1c91;
 
       ${theme.media.lg} {
         top: -32px;
-        right: 88px;
+        right: -32px;
         bottom: -32px;
-        left: -88px;
+        left: -32px;
       }
     }
   }
@@ -80,7 +79,7 @@ const Banner = styled.div`
 const BannerTitle = styled.h1` {
   display: block;
 
-  font-size: 18px;
+  font-size: 24px;
   line-height: 120%;
   letter-spacing: 0.07em;
   font-weight: 600;
@@ -88,13 +87,13 @@ const BannerTitle = styled.h1` {
   color: ${theme.colors.red};
 
   ${theme.media.sm} {
-    font-size: 22px;
+    font-size: 28px;
   }
 
   ${theme.media.md} {
     max-width: 484px;
     max-height: 114px;
-    font-size: 32px;
+    font-size: 34px;
   }
 }`
 
@@ -103,15 +102,20 @@ const BannerText = styled.p` {
   margin: 24px 0;
   max-width: 600px;
 
-  font-size: 24px;
+  font-size: 28px;
   font-style: normal;
   font-weight: ${theme.fontWeights.medium};
 
-  color: ${theme.colors.blue};
+  color: ${theme.colors.neonBlue};
 
   ${theme.media.md} {
     font-size: 44px;
     max-height: 180px;
+  }
+  
+  ${theme.media.lg} {
+    font-size: 52px;
+    max-height: 200px;
   }
 
 }`

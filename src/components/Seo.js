@@ -1,98 +1,107 @@
-import React from 'react'
-import {useStaticQuery, graphql} from 'gatsby'
-import {Helmet} from 'react-helmet'
+import React  from "react"
+import { useStaticQuery, graphql } from "gatsby"
+import { Helmet } from "react-helmet"
 
 /**
  * SEO component
  **/
 
-const Seo = ({title, description, metaUrl, image}) => {
-    const seoData = useStaticQuery(
-        graphql`
-            query SeoSettings {
-                site {
-                    siteMetadata {
-                        title
-                        description
-                        siteUrl
-                        author
-                        language
-                        color
-                    }
+const Seo = ({ title, description, metaUrl, image }) => {
+  const seoData = useStaticQuery(
+    graphql`
+        query SeoSettings {
+            site {
+                siteMetadata {
+                    title
+                    description
+                    siteUrl
+                    author
+                    language
+                    color
                 }
-                datoCmsSite {
-                    globalSeo {
-                        siteName
-                        twitterAccount
-                        facebookPageUrl
-                        fallbackSeo {
-                            description
-                            title
-                            twitterCard
-                            image {
-                                fixed(width: 1246) {
-                                    src
-                                }
+            }
+            datoCmsSite {
+                locale
+                noIndex
+                globalSeo {
+                    siteName
+                    twitterAccount
+                    facebookPageUrl
+                    fallbackSeo {
+                        description
+                        title
+                        twitterCard
+                        image {
+                            fixed(width: 1246) {
+                                src
                             }
                         }
                     }
-                    faviconMetaTags {
-                        tags
-                    }
+                }
+                faviconMetaTags {
+                    tags
                 }
             }
-        `
-    )
-
-    const {
-        site: {siteMetadata},
-        datoCmsSite: {
-            globalSeo: {fallbackSeo, siteName},
-            faviconMetaTags,
-        },
-    } = seoData
-
-    const meta = {
-        lang: siteMetadata.language,
-        title: title || siteName || fallbackSeo.title,
-        description: description || fallbackSeo.description,
-        url: metaUrl || siteMetadata.url,
-        image: image?.fixed?.src || fallbackSeo.image?.fixed.src,
-        color: siteMetadata.color,
+        }
+    `
+  )
+  const {
+    site: { siteMetadata },
+    datoCmsSite: {
+      globalSeo: { fallbackSeo, siteName },
+      faviconMetaTags,
+      noIndex,
+      locale
     }
+  } = seoData
 
-    return (
-        <Helmet title={meta.title} titleTemplate={`%s - ${siteMetadata.title}`}>
-            <html lang={meta.lang}/>
+  const meta = {
+    lang: locale || siteMetadata.language,
+    title: title || siteName || fallbackSeo.title,
+    description: description || fallbackSeo.description,
+    url: metaUrl || siteMetadata.url,
+    image: image?.fixed?.src || fallbackSeo.image?.fixed.src,
+    color: siteMetadata.color
+  }
 
-            <meta name="description" content={meta.description}/>
-            <meta name="image" content={meta.image}/>
-            <meta name="theme-color" content={meta.color}/>
-            <meta name="application-name" content={siteName}/>
-            <link rel="canonical" href={meta.url}/>
+  return (
+    <Helmet
+      title={meta.title}
+      titleTemplate={`%s - ${siteMetadata.title}`}
+    >
+      <html lang={meta.lang} />
 
-            <meta property="og:url" content={meta.url}/>
-            <meta property="og:title" content={meta.title}/>
-            <meta property="og:description" content={meta.description}/>
-            <meta property="og:image" content={meta.image}/>
+      <meta name="description" content={meta.description} />
+      <meta name="image" content={meta.image} />
+      <meta name="theme-color" content={meta.color} />
+      <meta name="application-name" content={siteName} />
+      <link rel="canonical" href={meta.url} />
 
-            <meta name="apple-mobile-web-app-capable" content="yes"/>
-            <meta name="apple-mobile-web-app-title" content={siteName}/>
-            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+      <meta property="og:url" content={meta.url} />
+      <meta property="og:title" content={meta.title} />
+      <meta property="og:description" content={meta.description} />
+      <meta property="og:image" content={meta.image} />
 
-            {faviconMetaTags?.tags?.length &&
-            faviconMetaTags.tags.map(
-                (tag, index) => {
-                    const attributes = tag.attributes
-                    attributes.key = index
-                    return React.createElement(tag.tagName, attributes)
-                }
-            )}
-        </Helmet>
-    )
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-title" content={siteName} />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+      {noIndex && <meta name="robots" content="noindex" />}
+
+      {faviconMetaTags?.tags?.length &&
+      faviconMetaTags.tags.map(
+        (tag, index) => {
+          const attributes = tag.attributes
+          attributes.key = index
+          return React.createElement(tag.tagName, attributes)
+        }
+      )}
+    </Helmet>
+  )
 }
 
 export default Seo
+
 
 export const query = graphql`
     fragment SeoFields on DatoCmsSeoField {
