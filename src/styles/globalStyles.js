@@ -183,14 +183,15 @@ export const GradientBorder = css`
     background-image: linear-gradient(to right, ${theme.colors.neonBlue} 15%, ${theme.colors.pink} 100%);
     transition: transform .7s ease;
   }
-
-  &:hover {
-    ${props => props.scale && `transform: scale(1.1);
+ ${theme.media.lg} {
+   &:hover {
+     ${props => props.scale && `transform: scale(1.1);
 `}
-    box-shadow: 0 0 10px ${theme.colors.neonBlue};
-    &::before {
-      transform:  rotate(320deg);
-    }
-  }
+     box-shadow: 0 0 10px ${theme.colors.neonBlue};
+     &::before {
+       transform:  rotate(320deg);
+     }
+   }
+ }
 `
 
