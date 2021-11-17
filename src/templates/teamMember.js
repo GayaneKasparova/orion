@@ -20,12 +20,14 @@ const TeamMember = ({
 
   return (
     <PageWrapper>
-      {photo && <CoverImage image={photo?.gatsbyImageData} alt={photo.alt || `${firstName} ${lastName}'s photo`} />}
       <ContentWrapper>
-        <ArticleTitle>{firstName} {lastName}</ArticleTitle>
-        <h2>{title}</h2>
-        <RichText data={{ body: bio }} />
+        {photo && <CoverImage image={photo?.gatsbyImageData} alt={photo.alt || `${firstName} ${lastName}'s photo`} />}
+        <div>
+          <Name>{firstName} {lastName}</Name>
+          <h2>{title}</h2>
+        </div>
       </ContentWrapper>
+      <RichText data={{ body: bio }} />
     </PageWrapper>
   )
 }
@@ -48,6 +50,9 @@ export const query = graphql`
 
 const PageWrapper = styled(ContainerBox)`
   padding: ${theme.space.m}px 0;
+`
+
+const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,28 +60,23 @@ const PageWrapper = styled(ContainerBox)`
   ${theme.media.md} {
     padding-top: ${theme.space.l}px;
     flex-direction: row;
-    justify-content: space-between;
   }
-`
-
-const ContentWrapper = styled.div`
-
 `
 
 const CoverImage = styled(GatsbyImage)`
   max-height: calc(100vh - 90px);
+  margin: ${theme.space.s}px ${theme.space.s}px ${theme.space.s}px 0;
+  ${theme.media.md} {
+    margin: ${theme.space.m}px ${theme.space.m}px ${theme.space.m}px 0;
+  }
 `
 
-const ArticleTitle = styled.h1`
-  margin: ${theme.space.m}px 0;
+const Name = styled.h1`
+  margin: ${theme.space.s}px 0;
   color: ${theme.colors.red};
 
-  ${theme.media.md} {
-    margin: ${theme.space.l}px 0;
-  }
-
   ${theme.media.lg} {
-    margin: ${theme.space.xl}px 0;
+    margin: ${theme.space.m}px 0;
   }
 `
 
