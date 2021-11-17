@@ -85,7 +85,7 @@ const StyledHeader = styled.header`
   border-bottom: 1px solid ${theme.colors.neonBlue};
   box-shadow: 0 1px 6px 0 ${theme.colors.neonBlue};
  .open {
-   min-height: calc(100vh - 77px);
+   min-height: calc(100vh - 75px);
    display: flex;
    flex-direction: column;
    justify-content: space-between;
