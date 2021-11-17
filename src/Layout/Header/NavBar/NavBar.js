@@ -59,26 +59,29 @@ const StyledNav = styled.nav`
     display: inline-block;
     padding: 0 8px;
     list-style: none;
+    ${theme.media.lg} {
 
-    &::after {
-      content: "";
-
-      position: absolute;
-      left: 16px;
-      width: 0;
-      bottom: 2px;
-      height: 3px;
-      background-image: linear-gradient(45deg, ${theme.colors.neonBlue}, ${theme.colors.purple});
-      border-radius: 1px;
-      transition: width .35s ease;
-      ${theme.media.lg} {
-        bottom: 16px;
-      }
-      }
-
-    &:hover {
       &::after {
-        width: calc(100% - 32px);
+        content: "";
+
+        position: absolute;
+        left: 16px;
+        width: 0;
+        bottom: 2px;
+        height: 3px;
+        background-image: linear-gradient(45deg, ${theme.colors.neonBlue}, ${theme.colors.purple});
+        border-radius: 1px;
+        transition: width .35s ease;
+
+        ${theme.media.lg} {
+          bottom: 16px;
+        }
+      }
+
+      &:hover {
+        &::after {
+          width: calc(100% - 32px);
+        }
       }
     }
   }
