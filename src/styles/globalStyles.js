@@ -11,16 +11,13 @@ import NotoSansAmSemiBold from './../assets/Fonts/NotoSansArmenian-SemiBold.ttf'
 import NotoSansAmThin from './../assets/Fonts/NotoSansArmenian-Thin.ttf'
 
 export const StyledBtn = css`
-  padding: 15px 30px;
+  padding: 15px 26px;
   border-radius: 12px;
-
   background-color: ${theme.colors.neonBlue};
-
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
   font-style: normal;
-
   color: white;
 `
 

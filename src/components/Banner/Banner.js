@@ -41,7 +41,6 @@ const Banner = styled.div`
 
   ${theme.media.md} {
     padding: ${theme.space.xl}px 0;
-    text-align: left;
   }
 
   ${theme.media.lg} {

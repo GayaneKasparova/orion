@@ -44,11 +44,6 @@ const CardWrapper = styled.div`
     justify-content: space-between;
     margin: ${theme.space.m}px;
     transform: translateX(${props => props.reverse === "true" ? "40px" : "-40px"});
-    &:hover {
-      .btn-gradient {
-        transform: translate(${props => props.reverse === "true" ? "40px" : "-40px"}, 50%) scale(1.03);
-      }
-    }
   }
   
 
@@ -86,9 +81,12 @@ const Button = styled(Link)`
   transform: translate(-50%, 50%);
 
   ${theme.media.lg} {
-    max-height: 44px;
     right: ${props => props.reverse === "true" ? "unset" : "40px"};
     left: ${props => props.reverse === "true" ? "40px" : "unset"};
+    transform: translate(0, 50%);
+    &:hover {
+      transform: translate(0, 50%) scale(1.03);
+    }
   }
 `
 

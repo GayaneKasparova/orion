@@ -5,6 +5,7 @@ import useNavLinks from "../../hooks/use-nav-links"
 import {Link} from "gatsby";
 //import {StaticImage} from "gatsby-plugin-image";
 import {theme} from "../../styles/theme";
+import { StaticImage } from "gatsby-plugin-image"
 
 
 const Footer = () => {
@@ -14,14 +15,14 @@ const Footer = () => {
         <StyledFooter>
             <FooterContainerBox>
                 <LogoWrapper to={'/'}>
-                    {/*<StaticImage
-                        src={"../../images/WhiteLogo.svg"}
+                    <StaticImage
+                        src={"../../assets/images/logo.png"}
                         alt={'Logo'}
                         layout="fixed"
-                        width={42}
-                        height={54}
+                        width={70}
+                        height={70}
                         style={{marginRight: 16}}
-                    />*/}
+                    />
                 </LogoWrapper>
 
                 <NavLinks>
