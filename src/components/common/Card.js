@@ -69,7 +69,6 @@ const Title = styled.h3`
   font-size: 22px;
 `
 const Description = styled.p`
-  text-align: justify;
   font-size: 16px;
 `
 

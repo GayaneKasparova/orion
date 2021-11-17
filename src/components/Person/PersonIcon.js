@@ -5,6 +5,7 @@ import { Link } from "gatsby"
 import { teamMemberUrl } from "../../urls"
 import { LocaleStateContext } from "../../context/LocaleContextProvider"
 import { GradientBorder } from "../../styles/globalStyles"
+import { theme } from "../../styles/theme"
 
 const PersonIcon = ({ firstName, lastName, photo, title, slug }) => {
   const  {locale} = useContext(LocaleStateContext)
@@ -31,7 +32,7 @@ const Photo = styled(GatsbyImage)`
 
 const Name = styled.h4`
   width: 80%;
-  margin:  auto;
+  margin:  ${theme.space.xs}px auto;
   text-align: center;
 `
 
