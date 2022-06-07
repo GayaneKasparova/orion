@@ -5,8 +5,8 @@ import {graphql} from 'gatsby'
 
 const ImageBlock = ({imageData: {image}}) => {
     return (
-        <GatsbyImage alt={`${image?.alt || image?.filename?.split('.')[0]}`} image={image?.gatsbyImageData}
-                     style={{display: 'block'}}/>
+      image ? <GatsbyImage alt={`${image?.alt || image?.filename?.split('.')[0]}`} image={image?.gatsbyImageData}
+                     style={{display: 'block'}}/> : ''
     )
 }
 

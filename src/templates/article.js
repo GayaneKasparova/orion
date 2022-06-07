@@ -1,11 +1,9 @@
 import React  from "react"
-import { GatsbyImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
 import Seo from "../components/Seo"
 import ArticleContent from "../components/Article/ArticleContent"
-import { ContainerBox } from "../components/common/ContainerBox/ContainerBox"
-import styled from "styled-components"
 import { theme } from "../styles/theme"
+import Cover from "../components/Cover/Cover"
 
 const Article = ({
                    data: {
@@ -19,12 +17,14 @@ const Article = ({
                  }) => {
 
   return (
-    <ContainerBox>
+    <div>
       <Seo {...seoSettings} />
-      {coverImage && <CoverImage image={coverImage?.gatsbyImageData} alt={coverImage?.alt || title} />}
-      <ArticleTitle>{title}</ArticleTitle>
+      {coverImage && <Cover image={coverImage}
+                            title={title}
+                            styles={{marginBottom: theme.space.l}}
+      />}
       <ArticleContent contentData={content} />
-    </ContainerBox>
+    </div>
   )
 }
 
@@ -49,28 +49,13 @@ export const query = graphql`
             content {
                 ...RichText
                 ...ImageBlock
+                ...ImageGallery
                 ...VideoUpload
                 ...VideoExternal
                 ...FileList
             }
         }
     }
-`
-const CoverImage = styled(GatsbyImage)`
-  max-height: calc(100vh - 90px);
-`
-
-const ArticleTitle = styled.h1`
-  margin: ${theme.space.m}px 0;
-  color: ${theme.colors.red};
-
-  ${theme.media.md} {
-    margin: ${theme.space.l}px 0;
-  }
-
-  ${theme.media.lg} {
-    margin: ${theme.space.xl}px 0;
-  }
 `
 
 export default Article

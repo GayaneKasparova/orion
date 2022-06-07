@@ -44,8 +44,8 @@ exports.createPages = async ({ graphql, actions }) => {
     })
 
     createPage({
-      path: urls.demoUrl(locale),
-      component: path.resolve("src/templates/demo.js"),
+      path: urls.demoPageUrl(locale),
+      component: path.resolve(`src/templates/demoPage.js`),
       context: { locale: locale }
     })
 

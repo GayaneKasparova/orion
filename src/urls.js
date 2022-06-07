@@ -7,4 +7,4 @@ exports.yogaStudioUrl = locale => `/${locale}/yoga-studio`
 exports.boxingSalonUrl = locale => `/${locale}/boxing-salon`
 exports.meetingRoomUrl = locale => `/${locale}/meeting-room`
 exports.barUrl = locale => `/${locale}/bar`
-exports.demoUrl = locale => `/${locale}/demo`
+exports.demoPageUrl = locale => `/${locale}/demo`

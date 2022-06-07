@@ -35,7 +35,7 @@ const SocialLinks = () => {
         socialLinks.map((link) => {
           return (
             <li key={link.id}>
-              <a href={link?.url}>
+              <a href={link?.url} target={'_blank'}>
                 {link?.icon?.url ? <img src={link?.icon?.url} alt={link?.name} /> : <span>{link.name}</span>}
               </a>
             </li>

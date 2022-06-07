@@ -29,7 +29,6 @@ const Header = () => {
   )
 
   const closeMenu = () => {
-    console.log('mtav')
     setMenuOpen(false)
   }
 
@@ -80,7 +79,7 @@ const StyledHeader = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 999;
   background-color: ${theme.colors.black};
   border-bottom: 1px solid ${theme.colors.neonBlue};
   box-shadow: 0 1px 6px 0 ${theme.colors.neonBlue};
@@ -99,6 +98,10 @@ const HeaderContainerBox = styled(ContainerBox)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: min-height .3s ease;
+  &.scrolled {
+    min-height: 51px;
+  }
 `
 
 const LogoWrapper = styled(Link)`
